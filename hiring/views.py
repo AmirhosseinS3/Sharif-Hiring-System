@@ -14,7 +14,7 @@ def blog_home(request):
 
 
 def blog_single(request):
-    return render(request, 'blog-single.html')
+    return render(request, 'single-post.html')
 
 
 def category(request):
@@ -43,7 +43,7 @@ def price(request):
 
 
 def single(request):
-    return render(request, 'single.html')
+    return render(request, 'single-post.html')
 
 
 def user(request):
