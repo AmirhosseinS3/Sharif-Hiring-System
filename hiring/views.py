@@ -29,9 +29,6 @@ def elements(request):
     return render(request, 'elements.html')
 
 
-def employer(request):
-    return render(request, 'employer.html')
-
 
 def index(request):
     return render(request, 'index.html')
@@ -43,10 +40,6 @@ def login(request):
 
 def price(request):
     return render(request, 'price.html')
-
-
-def search(request):
-    return render(request, 'search.html')
 
 
 def single(request):
