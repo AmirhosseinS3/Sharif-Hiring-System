@@ -1,3 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def hiring(request):
+    return render(request, 'login.html')
