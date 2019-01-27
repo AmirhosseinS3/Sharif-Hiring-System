@@ -17,7 +17,7 @@ urlpatterns = [
     path('price', views.price, name='price'),
     path('single', views.single, name='single'),
     path('user', views.user, name='user'),
-    path('sign_up_employer', views.SignUpEmployer.as_view, name='sign_up_employer'),
-    path('sign_up_employee', views.SignUpEmployee.as_view, name='sign_up_employee'),
+    path('sign_up_employer', views.SignUpEmployer.as_view(), name='sign_up_employer'),
+    path('sign_up_employee', views.SignUpEmployee.as_view(), name='sign_up_employee'),
 ]
 
