@@ -38,6 +38,7 @@ class SignUpEmployerForm(UserCreationForm):
 class SignUpEmployeeForm(UserCreationForm):
     name = forms.CharField(max_length=30, label='نام و نام خانوادگی')
     email = forms.EmailField(max_length=254, label='ایمیل')
+    SSN = forms.IntegerField(label='شماره ملی')
     password1 = forms.CharField(
         label='رمز عبور',
         strip=False,
@@ -55,8 +56,8 @@ class SignUpEmployeeForm(UserCreationForm):
         model = Employee
         fields = ('name', 'email', 'password1', 'password2',)
 
-    def save(self, commit=True):
-        user = super().save()
-        name = self.cleaned_data['name']
-        employer = Employee(name=name, username=user.username, email=user.email, password=user.password)
-        employer.save()
+    # def save(self, commit=True):
+    #     user = super().save()
+    #     name = self.cleaned_data['name']
+    #     employer = Employee(name=name, username=user.username, email=user.email, password=user.password)
+    #     employer.save()
