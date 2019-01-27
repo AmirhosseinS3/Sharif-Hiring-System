@@ -13,6 +13,14 @@ def blog_home(request):
     return render(request, 'blog-home.html')
 
 
+def sign_up_employer(request):
+    return render(request, 'sign-up-employer.html')
+
+
+def sign_up_employee(request):
+    return render(request, 'sign-up-employee.html')
+
+
 def blog_single(request):
     return render(request, 'single-post.html')
 
@@ -27,7 +35,6 @@ def contact(request):
 
 def elements(request):
     return render(request, 'elements.html')
-
 
 
 def index(request):
