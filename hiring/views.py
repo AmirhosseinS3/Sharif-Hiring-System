@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
-from .forms import SignUpForm
+from .forms import SignUpEmployerForm
 
 
 def hiring(request):
@@ -16,18 +16,16 @@ def blog_home(request):
     return render(request, 'blog-home.html')
 
 
-class SignUp(generic.CreateView):
-    form_class = SignUpForm
+class SignUpEmployer(generic.CreateView):
+    form_class = SignUpEmployerForm
     success_url = reverse_lazy('login_employer')
-    template_name = 'signup.html'
+    template_name = 'sign-up-employer.html'
 
 
-def sign_up_employer(request):
-    return render(request, 'sign-up-employer.html')
-
-
-def sign_up_employee(request):
-    return render(request, 'sign-up-employee.html')
+class SignUpEmployee(generic.CreateView):
+    form_class = SignUpEmployeeForm
+    success_url = reverse_lazy('login_employee')
+    template_name = 'sign-up-employee.html'
 
 
 def blog_single(request):
