@@ -4,7 +4,6 @@ from django.db import models
 
 class Employee(User):
     name = models.CharField(max_length=30, null=False)
-    SSN = models.IntegerField(null=False, primary_key=True)
 
 
 class Employer(User):
