@@ -61,43 +61,44 @@
 					<div class="row fullscreen d-flex align-items-center justify-content-center">
 						<div class="banner-content col-lg-12">
 							<h1 class="text-white">
-								ورود به سامانه کاریابی شریف			
-							</h1>	
-							<form action="search.html" class="serach-form-area">
-								<div class="row justify-content-center form-wrap">
-									<div class="col-lg-4 form-cols">
-										<input type="text" class="form-control" name="username" placeholder="ایمیل">
-									</div>
-									<div class="col-lg-3 form-cols">
-										<input  class="form-control" type="password" name="pass" placeholder="رمز عبور">
-									</div>
-									<div class="col-lg-3 form-cols">
-								<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-							<h4 class="text-white">
-								مرا بخاطر بسپار	
-							</h4>	
-								
-							</label>
-						</div>									
-									</div>
-									<div class="col-lg-2 form-cols">
-										<div>
-							<a href="#" class="txt1">
-							<h4 class="text-white">
-								رمز عبور را فراموش کرده ام
-							</h4>	
-							</a>
-						</div>										
-									</div>
-									<div class="col-lg-1 form-cols">
-									    <button type="button" class="btn btn-info">
-									      ورود
-									    </button>
-									</div>								
-								</div>
-							</form>	
+								ورود کارجویان به سامانه کاریابی شریف
+							</h1>
+
+
+							{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-4 align-self-center">
+        <div class="card">
+          <div class="card-body">
+            <h2>ورود کارجو</h2>
+            <form method="post" class="form-signin">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="id_email">ایمیل</label>
+                <input id="id_email" name="email"
+                       type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="id_password">رمز عبور</label>
+                <input id="id_password" name="password"
+                       type="password" class="form-control">
+              </div>
+              {% if errors %}
+                <div class="alert alert-danger" role="alert">
+                  {{ errors }}
+                </div>
+              {% endif %}
+              <button type="submit" class="btn btn-primary">ورود</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
 						</div>											
 					</div>
 				</div>
