@@ -12,12 +12,12 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('elements', views.elements, name='elements'),
     path('index', views.index, name='index'),
-    path('login_employer', views.SignUp, name='login_employer'),
+    path('login_employer', views.login_employer, name='login_employer'),
     path('login_employee', views.login_employee, name='login_employee'),
     path('price', views.price, name='price'),
     path('single', views.single, name='single'),
     path('user', views.user, name='user'),
-    path('sign_up_employer', views.sign_up_employer, name='sign_up_employer'),
-    path('sign_up_employee', views.sign_up_employee, name='sign_up_employee'),
+    path('sign_up_employer', views.SignUpEmployer.as_view, name='sign_up_employer'),
+    path('sign_up_employee', views.SignUpEmployee.as_view, name='sign_up_employee'),
 ]
 

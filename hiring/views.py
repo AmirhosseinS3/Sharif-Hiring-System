@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
-from .forms import SignUpEmployerForm
+from .forms import SignUpEmployerForm, SignUpEmployeeForm
 
 
 def hiring(request):
@@ -48,7 +48,11 @@ def index(request):
     return render(request, 'index.html')
 
 
-def login(request):
+def login_employer(request):
+    return render(request, 'login.html')
+
+
+def login_employee(request):
     return render(request, 'login.html')
 
 
