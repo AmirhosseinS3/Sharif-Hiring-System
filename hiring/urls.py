@@ -19,6 +19,7 @@ urlpatterns = [
     path('user/', views.user, name='user'),
     path('sign_up_employer/', views.SignUpEmployer.as_view(), name='sign_up_employer'),
     path('sign_up_employee/', views.SignUpEmployee.as_view(), name='sign_up_employee'),
-    path('confirm/', views.confirm, name='confirm'),
+    path('confirm_employee/<int:pk>/', views.confirm_employee, name='confirm_employee'),
+    path('confirm_employer/<int:pk>/', views.confirm_employer, name='confirm_employer'),
 ]
 

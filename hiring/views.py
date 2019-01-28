@@ -23,13 +23,13 @@ def blog_home(request):
 
 class SignUpEmployer(generic.CreateView):
     form_class = SignUpEmployerForm
-    success_url = reverse_lazy('login_employer')
+    success_url = reverse_lazy('confirm_employer')
     template_name = 'sign-up-employer.html'
 
 
 class SignUpEmployee(generic.CreateView):
     form_class = SignUpEmployeeForm
-    success_url = reverse_lazy('login_employee')
+    success_url = reverse_lazy('confirm_employee')
     template_name = 'sign-up-employee.html'
 
 
@@ -69,7 +69,7 @@ def login_employee(request):
                 return render(request, 'login_employee.html', {'errors': 'رمز عبور اشتباه'})
             else:
                 login(request, employee)
-                return HttpResponseRedirect('user')
+                return HttpResponseRedirect('/hiring/user')
 
 
 def login_employer(request):
@@ -88,7 +88,7 @@ def login_employer(request):
                 return render(request, 'login_employer.html', {'errors': 'رمز عبور اشتباه'})
             else:
                 login(request, employer)
-                return HttpResponseRedirect('user')
+                return HttpResponseRedirect('/hiring/user')
 
 
 def price(request):
@@ -103,6 +103,13 @@ def user(request):
     return render(request, 'user.html')
 
 
-def confirm(request):
+def confirm_employee(request, employee_id):
     if request.method == 'GET':
-        return render(request, 'confirm.html')
+        return render(request, 'confirm_employee.html')
+    elif request.method == 'POST':
+        entered_code = request.POST['code']
+
+
+def confirm_employer(request):
+    if request.method == 'GET':
+        return render(request, 'confirm_employer.html')
