@@ -103,32 +103,28 @@ def user(request):
     return render(request, 'user.html')
 
 
-def confirm_employee(reques):
-    if request.method == 'POST':
-        entered_code = request.POST['code']
-        id = request.POST['id']
+def confirm_employee(request, id, code):
+    if request.method == 'GET':
         employee = Employee.objects.get(id=id)
         actual_code = employee.confirmation_code
-        if entered_code == actual_code:
+        if code == actual_code:
             employee.activated = True
             employee.save()
-            return HttpResponseRedirect('hiring/confirm_success')
+            return HttpResponseRedirect('/hiring/confirm_success/')
         else:
-            return HttpResponseRedirect('hiring/confirm_failed')
+            return HttpResponseRedirect('/hiring/confirm_failed/')
 
 
-def confirm_employer(request):
-    if request.method == 'POST':
-        entered_code = request.POST['code']
-        id = request.POST['id']
+def confirm_employer(request, id, code):
+    if request.method == 'GET':
         employer = Employer.objects.get(id=id)
         actual_code = employer.confirmation_code
-        if entered_code == actual_code:
+        if code == actual_code:
             employer.activated = True
             employer.save()
-            return HttpResponseRedirect('hiring/confirm_success')
+            return HttpResponseRedirect('/hiring/confirm_success')
         else:
-            return HttpResponseRedirect('hiring/confirm_failed')
+            return HttpResponseRedirect('/hiring/confirm_failed')
 
 
 def success(request):
