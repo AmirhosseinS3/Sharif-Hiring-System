@@ -1,5 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.core.mail import send_mail
+from django.utils.crypto import get_random_string
 from .models import Employee, Employer
 
 
@@ -10,10 +12,17 @@ class SignUpEmployerForm(UserCreationForm):
     address = forms.CharField(max_length=500, label='آدرس')
     description = forms.CharField(max_length=2000, label='توضیحات شرکت')
 
-    def __init__(self):
-        super().__init__()
-        self.password1.label = 'رمز عبور'
-        self.password2.label = 'تکرار رمز عبور'
+    # def __init__(self):
+    #     super().__init__()
+    #     self.password1.label = 'رمز عبور'
+    #     self.password2.label = 'تکرار رمز عبور'
+
+    def save(self, commit=True):
+        employer = super().save()
+        unique_id = get_random_string(length=6)
+        employer.confirmation_code = unique_id
+        employer.save()
+        send_mail('Confirm your account!', unique_id, '', [self.cleaned_data['email']])
 
     class Meta:
         model = Employer
@@ -25,10 +34,20 @@ class SignUpEmployeeForm(UserCreationForm):
     email = forms.EmailField(max_length=254, label='ایمیل')
     username = forms.CharField(label='شماره ملی')
 
-    def __init__(self):
-        super().__init__()
-        self.password1.label = 'رمز عبور'
-        self.password2.label = 'تکرار رمز عبور'
+    # def __init__(self):
+    #     super().__init__()
+    #     self.password1.label = 'رمز عبور'
+    #     self.password2.label = 'تکرار رمز عبور'
+
+    def save(self, commit=True):
+        employee = super().save()
+        unique_id = get_random_string(length=6)
+        employee.confirmation_code = unique_id
+        employee.save()
+        send_mail('Confirm your account!', unique_id, '', [self.cleaned_data['email']])
+        # employer = Employee.objects.get(username=self.cleaned_data['username'])
+        # employer.confirmation_code = unique_id
+        # send_mail('Confirm your account!', unique_id, '', self.cleaned_data['email'])
 
     class Meta:
         model = Employee

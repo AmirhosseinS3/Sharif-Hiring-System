@@ -119,3 +119,12 @@ STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join('static'),)
+
+LOGIN_REDIRECT_URL = 'user'
+LOGOUT_REDIRECT_URL = ''
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'minitterr@gmail.com'
+EMAIL_HOST_PASSWORD = 'minitter123'
+EMAIL_PORT = 587

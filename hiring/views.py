@@ -101,3 +101,8 @@ def single(request):
 
 def user(request):
     return render(request, 'user.html')
+
+
+def confirm(request):
+    if request.method == 'GET':
+        return render(request, 'confirm.html')
