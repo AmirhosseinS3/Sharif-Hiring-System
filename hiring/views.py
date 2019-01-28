@@ -2,15 +2,15 @@ from django.contrib.auth import authenticate, login
 from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
-from django.urls import reverse_lazy
 from django.views import generic
+from django.contrib.auth import logout
 
 from hiring.models import Employer, Employee, Announcement
 from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm
 
 
 def hiring(request):
-    return render(request, 'login_employee.html')
+    return render(request, 'index.html')
 
 
 def about_us(request):
@@ -168,3 +168,7 @@ def create_announcement(request, id):
             print('good')
             return HttpResponseRedirect('/hiring/success_announcement')
 
+
+def logout_user(requet):
+    logout(requet)
+    return HttpResponseRedirect('/hiring')
