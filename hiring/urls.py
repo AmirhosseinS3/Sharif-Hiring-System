@@ -19,10 +19,12 @@ urlpatterns = [
     path('user/', views.user, name='user'),
     path('sign_up_employer/', views.SignUpEmployer.as_view(), name='sign_up_employer'),
     path('sign_up_employee/', views.SignUpEmployee.as_view(), name='sign_up_employee'),
-    path('success/', views.success, name='confirm'),
+    path('success_signup/', views.success_signup, name='success_signup'),
+    path('success_announcement/', views.success_announcement, name='success_announcement'),
     path(r'confirm_employee/<int:id>/<slug:code>/', views.confirm_employee, name='confirm_employee'),
     path(r'confirm_employer/<int:id>/<slug:code>/', views.confirm_employer, name='confirm_employer'),
     path('confirm_success/', views.confirm_success, name='confirm_success'),
     path('confirm_fail/', views.confirm_fail, name='confirm_fail'),
+    path('create_announcement/<int:id>/', views.create_announcement, name='create_announcement'),
 ]
 

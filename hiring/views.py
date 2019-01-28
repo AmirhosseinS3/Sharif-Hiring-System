@@ -5,8 +5,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from hiring.models import Employer, Employee
-from .forms import SignUpEmployerForm, SignUpEmployeeForm
+from hiring.models import Employer, Employee, Announcement
+from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm
 
 
 def hiring(request):
@@ -23,13 +23,13 @@ def blog_home(request):
 
 class SignUpEmployer(generic.CreateView):
     form_class = SignUpEmployerForm
-    success_url = 'hiring/success/'
+    success_url = 'hiring/success_signup/'
     template_name = 'sign-up-employer.html'
 
 
 class SignUpEmployee(generic.CreateView):
     form_class = SignUpEmployeeForm
-    success_url = 'hiring/success/'
+    success_url = 'hiring/success_signup/'
     template_name = 'sign-up-employee.html'
 
 
@@ -127,8 +127,12 @@ def confirm_employer(request, id, code):
             return HttpResponseRedirect('/hiring/confirm_failed')
 
 
-def success(request):
-    return render(request, 'success.html')
+def success_signup(request):
+    return render(request, 'success_signup.html')
+
+
+def success_announcement(request):
+    return render(request, 'success_announcement.html')
 
 
 def confirm_success(request):
@@ -137,3 +141,30 @@ def confirm_success(request):
 
 def confirm_fail(request):
     return render(request, 'confirm_fail.html')
+
+
+# class CreateAnnouncement(generic.CreateView):
+#     form_class = CreateAnnouncementForm
+#     success_url = 'hiring/success_announcement/'
+#     template_name = 'create-announcement.html'
+
+
+def create_announcement(request, id):
+    if request.method == 'GET':
+        form = CreateAnnouncementForm()
+        return render(request, 'create-announcement.html', {'form': form})
+    elif request.method == 'POST':
+        form = CreateAnnouncementForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            announce = Announcement(title=data['title'], category=data['category'],
+                                    contract_type=data['contract_type'],
+                                    salary_range_start=data['salary_range_start'],
+                                    salary_range_limit=data['salary_range_limit'],
+                                    city=data['city'], description=data['description'],
+                                    applicants=data['applicants'], experience=data['experience'],
+                                    employer=Employer.objects.get(id=id))
+            announce.save()
+            print('good')
+            return HttpResponseRedirect('/hiring/success_announcement')
+
