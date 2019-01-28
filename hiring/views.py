@@ -23,13 +23,13 @@ def blog_home(request):
 
 class SignUpEmployer(generic.CreateView):
     form_class = SignUpEmployerForm
-    success_url = reverse_lazy('confirm_employer')
+    success_url = 'hiring/success/'
     template_name = 'sign-up-employer.html'
 
 
 class SignUpEmployee(generic.CreateView):
     form_class = SignUpEmployeeForm
-    success_url = reverse_lazy('confirm_employee')
+    success_url = 'hiring/success/'
     template_name = 'sign-up-employee.html'
 
 
@@ -103,13 +103,41 @@ def user(request):
     return render(request, 'user.html')
 
 
-def confirm_employee(request, employee_id):
-    if request.method == 'GET':
-        return render(request, 'confirm_employee.html')
-    elif request.method == 'POST':
+def confirm_employee(reques):
+    if request.method == 'POST':
         entered_code = request.POST['code']
+        id = request.POST['id']
+        employee = Employee.objects.get(id=id)
+        actual_code = employee.confirmation_code
+        if entered_code == actual_code:
+            employee.activated = True
+            employee.save()
+            return HttpResponseRedirect('hiring/confirm_success')
+        else:
+            return HttpResponseRedirect('hiring/confirm_failed')
 
 
 def confirm_employer(request):
-    if request.method == 'GET':
-        return render(request, 'confirm_employer.html')
+    if request.method == 'POST':
+        entered_code = request.POST['code']
+        id = request.POST['id']
+        employer = Employer.objects.get(id=id)
+        actual_code = employer.confirmation_code
+        if entered_code == actual_code:
+            employer.activated = True
+            employer.save()
+            return HttpResponseRedirect('hiring/confirm_success')
+        else:
+            return HttpResponseRedirect('hiring/confirm_failed')
+
+
+def success(request):
+    return render(request, 'success.html')
+
+
+def confirm_success(request):
+    return render(request, 'confirm_success.html')
+
+
+def confirm_fail(request):
+    return render(request, 'confirm_fail.html')

@@ -19,7 +19,10 @@ urlpatterns = [
     path('user/', views.user, name='user'),
     path('sign_up_employer/', views.SignUpEmployer.as_view(), name='sign_up_employer'),
     path('sign_up_employee/', views.SignUpEmployee.as_view(), name='sign_up_employee'),
-    path('confirm_employee/<int:pk>/', views.confirm_employee, name='confirm_employee'),
-    path('confirm_employer/<int:pk>/', views.confirm_employer, name='confirm_employer'),
+    path('success/', views.success, name='confirm'),
+    path('confirm_employee/<int:id>/<int:code>/', views.confirm_employee, name='confirm_employee'),
+    path('confirm_employer/<int:id>/<int:code>/', views.confirm_employer, name='confirm_employer'),
+    path('confirm_success/', views.confirm_success, name='confirm_success'),
+    path('confirm_fail/', views.confirm_fail, name='confirm_fail'),
 ]
 

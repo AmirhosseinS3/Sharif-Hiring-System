@@ -60,9 +60,6 @@
 				<div class="container">
 					<div class="row fullscreen d-flex align-items-center justify-content-center">
 						<div class="banner-content col-lg-12">
-							<h1 class="text-white">
-								ورود کارجویان به سامانه کاریابی شریف
-							</h1>
 
 
 							{% block content %}
@@ -71,22 +68,10 @@
       <div class="col-12 col-sm-12 col-md-8 col-lg-6 col-xl-4 align-self-center">
         <div class="card">
           <div class="card-body">
-            <h2>ورود کارجو</h2>
-            <div class="alert alert-success" role="alert">
-  ثبت نام شما موفقیت آمیز بود
+            <div class="alert alert-danger" role="alert">
+  اینک تایید اشتباه است
 </div>
-              <div class="alert alert-primary" role="alert">
-                  کد تایید از طریق ایمیل به شما ارسال شد
-              </div>
-<form method="post" class="form-signin">
-              {% csrf_token %}
-              <div class="form-group">
-                <label for="id_code">کد تایید را وارد کنید</label>
-                <input id="id_code" name="code"
-                       type="text" class="form-control">
-              </div>
-<button type="submit" class="btn btn-primary">تایید</button>
-</form>
+
           </div>
         </div>
       </div>
