@@ -26,11 +26,17 @@ class SignUpEmployer(generic.CreateView):
     success_url = 'hiring/success_signup/'
     template_name = 'sign-up-employer.html'
 
+    def get_success_url(self):
+        return self.success_url
+
 
 class SignUpEmployee(generic.CreateView):
     form_class = SignUpEmployeeForm
-    success_url = 'hiring/success_signup/'
+    success_url = '/hiring/success_signup/'
     template_name = 'sign-up-employee.html'
+
+    def get_success_url(self):
+        return self.success_url
 
 
 def blog_single(request):

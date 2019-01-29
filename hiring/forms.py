@@ -100,4 +100,3 @@ class CreateAnnouncementForm(ModelForm):
         fields = ['title', 'category', 'contract_type', 'salary_range_start',
                   'salary_range_limit', 'city', 'description', 'applicants',
                   'experience']
-
