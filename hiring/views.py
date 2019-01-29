@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 from hiring.models import Employer, Employee, Announcement
 from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm
@@ -38,7 +39,7 @@ class SignUpEmployee(generic.CreateView):
     def get_success_url(self):
         return self.success_url
 
-
+@login_required
 def blog_single(request):
     return render(request, 'single-post.html')
 
@@ -112,7 +113,7 @@ def price(request):
 def single(request):
     return render(request, 'single-post.html')
 
-
+@login_required
 def user(request):
     username = request.session['username']
     id = request.session['id']
@@ -147,7 +148,7 @@ def confirm_employer(request, id, code):
 def success_signup(request):
     return render(request, 'success_signup.html')
 
-
+@login_required
 def success_announcement(request):
     return render(request, 'success_announcement.html')
 
@@ -165,7 +166,7 @@ def confirm_fail(request):
 #     success_url = 'hiring/success_announcement/'
 #     template_name = 'create-announcement.html'
 
-
+@login_required
 def create_announcement(request, id):
     if request.method == 'GET':
         form = CreateAnnouncementForm()
@@ -185,11 +186,12 @@ def create_announcement(request, id):
             print('good')
             return HttpResponseRedirect('/hiring/success_announcement')
 
-
+@login_required
 def logout_user(requet):
     logout(requet)
     return HttpResponseRedirect('/hiring')
 
+@login_required
 def announcements(request, id):
 
     emp = Employer.objects.filter(id = id).first()
