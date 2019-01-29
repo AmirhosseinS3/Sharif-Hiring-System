@@ -62,7 +62,7 @@ class SignUpEmployeeForm(UserCreationForm):
         employee.confirmation_code = unique_code
         employee.save()
         email_message = EmailMessage('Confirm your account!',
-                                     'hiring/confirm_employee/' + str(employee.id) + '/' + str(unique_code), '',
+                                     'http://127.0.0.1:8000/hiring/confirm_employee/' + str(employee.id) + '/' + str(unique_code), '',
                                      [self.cleaned_data['email']])
         email_message.send()
 
