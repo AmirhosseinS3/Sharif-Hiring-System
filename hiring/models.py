@@ -40,4 +40,5 @@ class Announcement(models.Model):
     applicants = models.CharField(max_length=200)
     experience = models.CharField(max_length=200)
     employer = models.ForeignKey(to=Employer, on_delete=models.CASCADE)
+    is_allowed = models.BooleanField(default=False)
 

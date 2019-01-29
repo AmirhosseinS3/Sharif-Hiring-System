@@ -26,5 +26,6 @@ urlpatterns = [
     path(r'confirm_success/', views.confirm_success, name='confirm_success'),
     path(r'confirm_fail/', views.confirm_fail, name='confirm_fail'),
     path(r'create_announcement/<int:id>/', views.create_announcement, name='create_announcement'),
+    path(r'announcements/<int:id>/', views.announcements, name='announcements'),
 ]
 

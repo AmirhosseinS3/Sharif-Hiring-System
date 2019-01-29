@@ -1,9 +1,10 @@
-	{% load static %}<!DOCTYPE html>
+   {% load static %} <!DOCTYPE html>
 	<html lang="zxx" class="no-js">
 	<head>
-	<title>ورود</title>
+		<title>مشخصات</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="../../static/images/icons/favicon.ico"/>
 <!--===============================================================================================-->
@@ -21,8 +22,6 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../static/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../static/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
 
 	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
 	<link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
@@ -33,15 +32,14 @@
 			<link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
 			<link rel="stylesheet" href="{% static 'css/main.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main2.css' %}">
-<!--===============================================================================================-->
-</head>
+		</head>
 		<body>
 
 			  <header id="header">
 			    <div class="container">
 			    	<div class="row align-items-center justify-content-between d-flex">
 				      <div id="logo">
-				        <a href="index.html"><img src="../../static/img/logo.png" alt="" title="" /></a>
+				        <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="" title="" /></a>
 				      </div>
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
@@ -49,7 +47,7 @@
 				          <li><a href="about-us.html">درباره ما</a></li>
 				          <li><a href="contact.html">ارتباط با ما</a></li>
 				          <li class="menu-has-children"><a href="">مشخصات</a>
-						  <li class="menu-has-children"><a href="">آگهی های من</a>
+						  <li class="menu-has-children"><a href="{% url 'announcements' id %}">آگهی های من</a>
 				          <li><a class="ticker-btn" href="#">خروج</a></li>
 				        </ul>
 				      </nav><!-- #nav-menu-container -->
@@ -65,7 +63,7 @@
 					<div class="row fullscreen d-flex align-items-center justify-content-center">
 						<div class="banner-content col-lg-12">
 							<h1 class="text-white">
-                               درج آگهی
+								اطلاعات شرکت
 							</h1>
 						</div>
 					</div>
@@ -78,32 +76,80 @@
 				<div class="container" align = "right" >
 					<div class="row justify-content-center d-flex">
 						<div class="col-lg-8 post-list">
-							<h2>فرم ثبت آگهی</h2>
+							<h2>اطلاعات شرکت</h2>
 							<div class="dropdown-divider">
 							</div>
-							<form method="post">
+							<form>
+                                <div class="form-group row">
+                                    <label for="employer-name" class="col-sm-2 col-form-label">نام شرکت</label>
+                                    <div class="col-sm-10" style="background-color: whitesmoke">
+                                        <input type="text" readonly class="form-control-plaintext" id="employer-name" value="{{ name }} ">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+									<label for="employer-pop" class="col-sm-2 col-form-label">آدرس شرکت</label>
+									<div class="col-sm-10" style="background-color: whitesmoke">
+										<input type="text" readonly class="form-control-plaintext" id="employer-pop" value="{{ address }}">
+									</div>
+								 </div>
+                                <div class="form-group row">
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">ایمیل</label>
+                                    <div class="col-sm-10" style="background-color: whitesmoke">
+                                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ email}} ">
+                                    </div>
+                                </div>
+								<div class="form-group row">
+                                    <label for="employer-desc" class="col-sm-2 col-form-label">توضیحات شرکت</label>
+                                    <div class="col-sm-10" style="background-color: whitesmoke">
+                                        <input type="text" readonly class="form-control-plaintext" id="employer-desc" value="{{ description }}">
+                                    </div>
+                                </div>
+                            </form>
+							<button class="btn btn-primary mx-auto d-block" style="margin: 10px">تغییر اطلاعات</button>
 
-            {% csrf_token %}
+							<h2>آگهی های شما</h2>
+							<div class="dropdown-divider">
+							</div>
+                            {% for announcement in announcements %}
+							<div class="single-post d-flex flex-row" align = "right" dir = "rtl">
+								<div class="thumb" align = "right">
+									<img src="{% static 'img/quera.png' %}" alt="">
+									<ul class="tags" >
+									</ul>
+								</div>
+								<div class="details" align = "right" dir = "rtl">
+									<div class="title d-flex flex-row justify-content-between" align = "right">
+										<div class="titles" align = "right" >
+											<a href="single-post.html"><h3>{{  announcement.title }}</h3></a>
+										</div>
 
-            {% for field in form %}
+									</div>
+									<p>
+										{{  announcement.description}}
+									</p>
+									<h5>ساعت کاری:{{ announcement.contract_type }}</h5>
+									<p class="address"><span class="lnr lnr-map"></span>{{ announcemet.employer.address  }}</p>
+									<button class="btn btn-primary">ویرایش آگهی</button>
+									<button class="btn btn-primary">حذف آگهی</button>
+									<button class="btn btn-primary">غیر فعال کردن آگهی</button>
+									<button class="btn btn-primary">مشاهده درخواست ها</button>
+								</div>
+							</div>
+                            {% endfor %}
+														<div class="dropdown-divider">
+							</div>
 
-              <p>
-                {{ field.label_tag }}<br>
-                {{ field }}
+														<div class="dropdown-divider">
+							</div>
 
-                {% for error in field.errors %}
+							<button class="mx-auto d-block btn btn-primary" style="margin: 10px">   <a href="{% url 'create_announcement' id %}">
+                                اضافه کردن آگهی جدید
+                            </a>
 
-                  <p style="color: red">{{ error }}</p>
-
-                {% endfor %}
-
-              </p>
-
-            {% endfor %}
-
-            <button type="submit" class="btn btn-primary">ثبت آکهی</button>
-          </form>
-
+                            </button>
+							<section class="contact-page-area section-gap">
+							
+			</section>
 						</div>
 						<!--<div class="col-lg-4 sidebar">-->
 
@@ -149,6 +195,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="{% static 'js/parallax.min.js' %}"></script>
 			<script src="{% static 'js/mail-script.js' %}"></script>
 			<script src="{% static 'js/main.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="../../static/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../../static/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../../static/vendor/bootstrap/js/popper.js"></script>
+	<script src="../../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../../static/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../../static/vendor/daterangepicker/moment.min.js"></script>
+	<script src="../../static/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="../../static/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="../../static/js/main.js"></script>
+
 		</body>
 	</html>
 
