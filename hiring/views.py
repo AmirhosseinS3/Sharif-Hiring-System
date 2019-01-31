@@ -39,6 +39,7 @@ class SignUpEmployee(generic.CreateView):
     def get_success_url(self):
         return self.success_url
 
+
 @login_required
 def blog_single(request):
     return render(request, 'single-post.html')
@@ -77,7 +78,7 @@ def login_employee(request):
             else:
                 login(request, employee)
                 request.session['username'] = username
-                request.session['id'] = Employee.objects.get(username= username).id
+                request.session['id'] = Employee.objects.get(username=username).id
                 request.session['isEmployee'] = True
                 return redirect('/hiring/user')
                 # return HttpResponseRedirect('/hiring/user')
@@ -100,7 +101,7 @@ def login_employer(request):
             else:
                 login(request, employer)
                 request.session['username'] = username
-                request.session['id'] = Employer.objects.get(username = username).id
+                request.session['id'] = Employer.objects.get(username=username).id
                 request.session['isEmployee'] = False
                 return redirect('/hiring/user')
                 # return HttpResponseRedirect('/hiring/user')
@@ -113,12 +114,13 @@ def price(request):
 def single(request):
     return render(request, 'single-post.html')
 
+
 @login_required
 def user(request):
     username = request.session['username']
     id = request.session['id']
     isEmployee = request.session['isEmployee']
-    return render(request, 'user.html', {'username' : username , 'isEmployee': isEmployee , 'id' : id})
+    return render(request, 'user.html', {'username': username, 'isEmployee': isEmployee, 'id': id})
 
 
 def confirm_employee(request, id, code):
@@ -147,6 +149,7 @@ def confirm_employer(request, id, code):
 
 def success_signup(request):
     return render(request, 'success_signup.html')
+
 
 @login_required
 def success_announcement(request):
@@ -186,19 +189,20 @@ def create_announcement(request, id):
             print('good')
             return HttpResponseRedirect('/hiring/success_announcement')
 
+
 @login_required
 def logout_user(requet):
     logout(requet)
     return HttpResponseRedirect('/hiring')
 
+
 @login_required
 def announcements(request, id):
-
-    emp = Employer.objects.filter(id = id).first()
+    emp = Employer.objects.filter(id=id).first()
     announcements = Announcement.objects.filter(employer=emp).filter(is_allowed=True)
     name = emp.name
     address = emp.address
     desc = emp.description
     id = id
-    return render(request, 'announcements.html' , {'announcements' : announcements , 'id' : id, 'name' : name ,
-                                            'address': address , 'description' : desc})
+    return render(request, 'announcements.html', {'announcements': announcements, 'id': id, 'name': name,
+                                                  'address': address, 'description': desc})
