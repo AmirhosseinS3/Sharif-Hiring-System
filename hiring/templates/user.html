@@ -42,9 +42,9 @@
 				          <li class="menu-active"><a href="index.html">خانه</a></li>
 				          <li><a href="about-us.html">درباره ما</a></li>
 				          <li><a href="contact.html">ارتباط با ما</a></li>
-				          <li class="menu-has-children"><a href="">مشخصات</a>
+				          <li class="menu-has-children"><a href="{% url 'edit_profile_employee' id %}">مشخصات</a>
                             {% if isEmployee %}
-						  <li class="menu-has-children"><a href="{% url 'edit_profile_employee' id %}">آگهی های من</a>
+						  <li class="menu-has-children"><a href="">آگهی های من</a>
                             {% else %}
                                 <li class="menu-has-children"><a href="{% url 'announcements' id %}">آگهی های من</a>
                             {% endif %}

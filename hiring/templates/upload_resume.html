@@ -16,13 +16,13 @@
 		<!-- Site Title -->
 		<title>سامانه کاریابی شریف</title>
 
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 			<!--
 			CSS
 			============================================= -->
 
 
-		
+
 			<link rel="stylesheet" href="../../static/css/linearicons.css">
 			<link rel="stylesheet" href="../../static/css/font-awesome.min.css">
 			<link rel="stylesheet" href="../../static/css/bootstrap.css">
@@ -49,23 +49,23 @@
 						  <li class="menu-has-children"><a href="">آگهی های من</a>
 				          <li><a class="ticker-btn" href="">خروج</a></li>
 				        </ul>
-				      </nav><!-- #nav-menu-container -->		    		
+				      </nav><!-- #nav-menu-container -->
 			    	</div>
 			    </div>
 			  </header><!-- #header -->
 
 
 			<!-- start banner Area -->
-			
+
 			<!-- start banner Area -->
-			<section class="banner-area relative" id="home">	
+			<section class="banner-area relative" id="home">
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
 					<div class="row fullscreen d-flex align-items-center justify-content-center">
 						<div class="banner-content col-lg-12">
 							<h1 class="text-white">
-								به سامانه کاریابی شریف خوش آمدید			
-							</h1>	
+								به سامانه کاریابی شریف خوش آمدید
+							</h1>
 							<form action="" class="serach-form-area">
 								<div class="row justify-content-center form-wrap">
 									<div class="col-lg-4 form-cols">
@@ -92,9 +92,9 @@
 												<option value="5">مهندسی مواد</option>
 												<option value="6">مهندسی شیمی</option>
 												<option value="7">مهندسی صنایع</option>
-												
+
 											</select>
-										</div>										
+										</div>
 									</div>
 									<div class="col-lg-2 form-cols">
 										<div class="default-select" id="default-selects2">
@@ -103,72 +103,53 @@
 												<option value="2">تمام وقت</option>
 												<option value="3">پاره وقت</option>
 											</select>
-										</div>										
+										</div>
 									</div>
 									<div class="col-lg-1 form-cols">
 									    <button type="button" class="btn btn-info">
 									      <span class="lnr lnr-magnifier"></span> بیاب
 									    </button>
-									</div>								
+									</div>
 								</div>
-							</form>	
-						</div>											
+							</form>
+						</div>
 					</div>
 				</div>
 			</section>
-			<!-- End banner Area -->	
-			
+			<!-- End banner Area -->
+
 			<!-- Start popular-post Area -->
 
-		
+
 			<!-- End popular-post Area -->
-			
+
 			<!-- Start post Area -->
 			<section class="post-area section-gap">
 				<div class="container" align = "right" >
 					<div class="row justify-content-center d-flex">
 						<div class="col-lg-8 post-list" align = "right">
-							<h3 class="mb-30">ویرایش پروفایل</h3>
+							<h3 class="mb-30">آپلود رزومه</h3>
 
-                            <form method="post"  dir = "rtl" >
+                            <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">آپلود</button>
+  </form>
 
-                            {% csrf_token %}
-
-                            {% for field in form %}
-
-                             <p dir = "rtl" align="right">
-                              {% ifnotequal field.lable 'password' %}
-                                  <p dir = "rtl" align="right">{{ field.label_tag }}</p>
-
-                               <p dir = "rtl" align="right"> {{ field}} </p>
-
-                              {% for error in field.errors %}
-
-                             <p style="color: red">{{ error }}</p>
-
-
-
-                              {% endfor %}
-                                 {% endifnotequal%}
-                                </p>
-                                {% endfor %}
-
-            <button type="submit" class="btn btn-primary">تایید</button>
-          </form>
 
 						</div>
 						<div class="col-lg-4 d-flex flex-column">
-							<a class="contact-btns" href="{% url 'upload_resume' id %}">آپلود رزومه</a>
+							<a class="contact-btns" href="#">آپلود رزومه</a>
 							<a class="contact-btns" href="#">ویرایش مشخصات</a>
 							<a class="contact-btns" href="#">فرصت های شغلی من</a>
 					</div>
                     </div>
-				</div>	
+				</div>
 			</section>
 			<!-- End post Area -->
-				
 
-			<!-- start footer Area -->		
+
+			<!-- start footer Area -->
 			<footer class="footer-area section-gap">
 				<div class="container">
 
@@ -187,7 +168,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 					</div>
 				</div>
 			</footer>
-			<!-- End footer Area -->		
+			<!-- End footer Area -->
 
 			<script src="../../static/js/vendor/jquery-2.2.4.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

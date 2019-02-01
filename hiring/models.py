@@ -1,6 +1,10 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+class Resume(models.Model):
+    description = models.CharField(max_length=255, blank=True)
+    document = models.FileField(upload_to='documents/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
 class Employee(User):
     name = models.CharField(max_length=30, null=False)
@@ -21,6 +25,8 @@ class Employee(User):
     )
     major = models.CharField(max_length=50, choices=MAJORS)
     isAlumni = models.BooleanField(default=False)
+    resume = models.ForeignKey(Resume, on_delete='SET_NULL', related_name='employee',  null=True, blank=True)
+
 
 
 class Employer(User):

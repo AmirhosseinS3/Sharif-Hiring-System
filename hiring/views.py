@@ -6,8 +6,9 @@ from django.views import generic
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserChangeForm
-from hiring.models import Employer, Employee, Announcement
-from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm, editEmployeeProfileForm
+from hiring.models import Employer, Employee, Announcement, Resume
+from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm, editEmployeeProfileForm, ResumeForm
+
 
 
 def hiring(request):
@@ -158,7 +159,8 @@ def success_edit_profile(request):
 def success_announcement(request):
     return render(request, 'success_announcement.html')
 
-
+def success_upload_resume(request):
+    return render(request, 'success_upload_resume.html')
 def confirm_success(request):
     return render(request, 'confirm_success.html')
 
@@ -215,14 +217,33 @@ def edit_profile_employee(request, id):
     employee = Employee.objects.filter(id = id).first()
     if request.method == 'GET':
         form = editEmployeeProfileForm(instance= employee)
-        return render(request, 'edit-profile.html', {'form': form})
+        return render(request, 'edit-profile.html', {'form': form, 'id' : id})
     elif request.method == 'POST':
         form = editEmployeeProfileForm(request.POST, instance= employee)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/hiring/success_edit_profile')
         else:
-            return render(request, 'edit-profile.html', {'form': form})
+            return render(request, 'edit-profile.html', {'form': form, 'id' : id})
 
 
 
+
+@login_required
+def upload_resume(request, id):
+    employee = Employee.objects.filter(id = id).first()
+    if request.method == 'POST':
+        form = ResumeForm(request.POST, request.FILES)
+        if form.is_valid():
+            # data = form.cleaned_data
+            # resume = Resume(document= data['document'])
+            # form.save()
+            employee.resume = form.save()
+            employee.save()
+            # form.save()
+            return HttpResponseRedirect('/hiring/success_upload_resume')
+    else:
+        form = ResumeForm()
+    return render(request, 'upload_resume.html', {
+        'form': form
+    })

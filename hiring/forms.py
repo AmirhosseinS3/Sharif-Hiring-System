@@ -6,7 +6,7 @@ from django.forms import ModelForm, BaseModelForm
 from django.http import HttpResponseRedirect
 from django.utils.crypto import get_random_string
 
-from .models import Employee, Employer, Announcement
+from .models import Employee, Employer, Announcement, Resume
 
 
 class SignUpEmployerForm(UserCreationForm):
@@ -141,3 +141,11 @@ class editEmployeeProfileForm(UserChangeForm):
         fields = ('name', 'email', 'skills', 'city','experience', 'major', 'description', 'isAlumni')
 
 
+class ResumeForm(forms.ModelForm):
+    # description = forms.CharField(max_length=255, label="توضیحات")
+    # document = forms.FileField(upload_to='documents/', label='انتخاب فایل')
+    # uploaded_at = forms.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        model = Resume
+        fields = ( 'document',)
