@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ed65670-e14c-49be-a751-572732840534" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hiring/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/hiring/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hiring/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/hiring/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hiring/templates/edit-profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/hiring/templates/edit-profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hiring/templates/single-post.html" beforeDir="false" afterPath="$PROJECT_DIR$/hiring/templates/single-post.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hiring/templates/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/hiring/templates/user.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hiring/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/hiring/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hiring/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/hiring/views.py" afterDir="false" />
@@ -30,45 +27,55 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="16" />
-          <entry key="py" value="26" />
+          <entry key="html" value="17" />
+          <entry key="py" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="16" />
-          <entry key="Python" value="26" />
+          <entry key="HTML" value="17" />
+          <entry key="Python" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="470" />
-          <entry key="py" value="2529" />
+          <entry key="html" value="830" />
+          <entry key="py" value="2783" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="470" />
-          <entry key="Python" value="2529" />
+          <entry key="HTML" value="830" />
+          <entry key="Python" value="2783" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hiring/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="240" column="51" selection-start-line="240" selection-start-column="51" selection-end-line="240" selection-end-column="51" />
+            <state relative-caret-position="490">
+              <caret line="254" column="23" selection-start-line="254" selection-start-column="23" selection-end-line="254" selection-end-column="23" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
-                <marker date="1549047602365" expanded="true" signature="5038:5096" ph="..." />
-                <marker date="1549047602365" expanded="true" signature="5239:5297" ph="..." />
-                <marker date="1549047602365" expanded="true" signature="7395:7396" ph="..." />
-                <marker date="1549047602365" expanded="true" signature="7395:7899" ph="..." />
-                <marker date="1549047602365" expanded="true" signature="7946:7951" ph="..." />
+                <marker date="1549049427954" expanded="true" signature="5117:5175" ph="..." />
+                <marker date="1549049427954" expanded="true" signature="5318:5376" ph="..." />
+                <marker date="1549049427954" expanded="true" signature="7474:7475" ph="..." />
+                <marker date="1549049427954" expanded="true" signature="7474:7978" ph="..." />
+                <marker date="1549049427954" expanded="true" signature="8025:8030" ph="..." />
+                <marker date="1549049427954" expanded="true" signature="8654:8659" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/hiring/templates/single-post.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="88" column="55" lean-forward="true" selection-start-line="88" selection-start-column="55" selection-end-line="88" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -76,17 +83,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hiring/templates/upload_resume.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-427">
-              <caret line="136" column="9" selection-start-line="136" selection-start-column="9" selection-end-line="136" selection-end-column="9" />
+            <state relative-caret-position="66">
+              <caret line="165" column="61" lean-forward="true" selection-start-line="165" selection-start-column="61" selection-end-line="165" selection-end-column="61" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hiring/templates/user.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="43" column="74" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="74" />
+            <state relative-caret-position="425">
+              <caret line="254" column="90" selection-start-line="254" selection-start-column="90" selection-end-line="254" selection-end-column="90" />
             </state>
           </provider>
         </entry>
@@ -94,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hiring/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+            <state relative-caret-position="362">
+              <caret line="56" column="22" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="22" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -106,8 +113,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hiring/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="31" column="55" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="55" />
+            <state relative-caret-position="578">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -118,7 +125,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/hiring/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
+            <state relative-caret-position="481">
               <caret line="149" column="18" selection-start-line="149" selection-start-column="18" selection-end-line="149" selection-end-column="18" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
@@ -151,6 +158,8 @@
       <find>success</find>
       <find>Fore</find>
       <find>CASCADE</find>
+      <find>user</find>
+      <find>user.</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,13 +171,14 @@
         <option value="$PROJECT_DIR$/hiring/templates/success_edit_profile.html" />
         <option value="$PROJECT_DIR$/SHS/settings.py" />
         <option value="$PROJECT_DIR$/hiring/templates/success_upload_resume.html" />
-        <option value="$PROJECT_DIR$/hiring/templates/user.html" />
         <option value="$PROJECT_DIR$/hiring/templates/edit-profile.html" />
-        <option value="$PROJECT_DIR$/hiring/urls.py" />
         <option value="$PROJECT_DIR$/hiring/templates/upload_resume.html" />
         <option value="$PROJECT_DIR$/hiring/forms.py" />
         <option value="$PROJECT_DIR$/hiring/models.py" />
+        <option value="$PROJECT_DIR$/hiring/urls.py" />
         <option value="$PROJECT_DIR$/hiring/views.py" />
+        <option value="$PROJECT_DIR$/hiring/templates/single-post.html" />
+        <option value="$PROJECT_DIR$/hiring/templates/user.html" />
       </list>
     </option>
   </component>
@@ -296,9 +306,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24966443" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966443" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
@@ -311,7 +322,7 @@
       <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.05382436" />
       <window_info anchor="bottom" id="TODO" order="12" weight="0.3286119" />
       <window_info anchor="right" id="SciView" />
       <window_info anchor="right" id="Database" />
@@ -416,13 +427,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/django/forms/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="265" selection-start-line="265" selection-end-line="265" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/django/core/management/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1738">
@@ -451,13 +455,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hiring/templates/user.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="43" column="74" selection-start-line="43" selection-start-column="74" selection-end-line="43" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hiring/templates/edit-profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -465,10 +462,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/django/forms/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="451" column="23" lean-forward="true" selection-start-line="451" selection-start-column="23" selection-end-line="451" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/hiring/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="31" column="55" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="55" />
+        <state relative-caret-position="578">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
@@ -477,7 +481,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hiring/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
+        <state relative-caret-position="481">
           <caret line="149" column="18" selection-start-line="149" selection-start-column="18" selection-end-line="149" selection-end-column="18" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
@@ -488,15 +492,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hiring/templates/upload_resume.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-427">
-          <caret line="136" column="9" selection-start-line="136" selection-start-column="9" selection-end-line="136" selection-end-column="9" />
+        <state relative-caret-position="66">
+          <caret line="165" column="61" lean-forward="true" selection-start-line="165" selection-start-column="61" selection-end-line="165" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/hiring/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+        <state relative-caret-position="362">
+          <caret line="56" column="22" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="22" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
@@ -505,16 +509,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hiring/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="240" column="51" selection-start-line="240" selection-start-column="51" selection-end-line="240" selection-end-column="51" />
+        <state relative-caret-position="490">
+          <caret line="254" column="23" selection-start-line="254" selection-start-column="23" selection-end-line="254" selection-end-column="23" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
-            <marker date="1549047602365" expanded="true" signature="5038:5096" ph="..." />
-            <marker date="1549047602365" expanded="true" signature="5239:5297" ph="..." />
-            <marker date="1549047602365" expanded="true" signature="7395:7396" ph="..." />
-            <marker date="1549047602365" expanded="true" signature="7395:7899" ph="..." />
-            <marker date="1549047602365" expanded="true" signature="7946:7951" ph="..." />
+            <marker date="1549049427954" expanded="true" signature="5117:5175" ph="..." />
+            <marker date="1549049427954" expanded="true" signature="5318:5376" ph="..." />
+            <marker date="1549049427954" expanded="true" signature="7474:7475" ph="..." />
+            <marker date="1549049427954" expanded="true" signature="7474:7978" ph="..." />
+            <marker date="1549049427954" expanded="true" signature="8025:8030" ph="..." />
+            <marker date="1549049427954" expanded="true" signature="8654:8659" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hiring/templates/single-post.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="88" column="55" lean-forward="true" selection-start-line="88" selection-start-column="55" selection-end-line="88" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hiring/templates/user.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="254" column="90" selection-start-line="254" selection-start-column="90" selection-end-line="254" selection-end-column="90" />
         </state>
       </provider>
     </entry>

@@ -131,8 +131,8 @@
 									<h6>تهران</h6>
 									<p align = "right">
 									<span dir = "rtl">
-                
-           
+
+
 											شرکت دانش بنیان اطلاع رسانی پیوند داده ها شرکت تخصصی در حوزه تولید فنآوری اطلاعات (نرم‌افزار) با 20سال سابقه فعالیت می باشد. این شرکت دارای رتبه یک تولید نرم افزار سفارش مشتری از سازمان برنامه و بودجه می باشد.
 									 </span>
 									</p>
@@ -147,8 +147,8 @@
 									<h6>تهران</h6>
 									<p align = "right">
 									<span dir = "rtl">
-                
-           
+
+
 											شرکت دانش بنیان اطلاع رسانی پیوند داده ها شرکت تخصصی در حوزه تولید فنآوری اطلاعات (نرم‌افزار) با 20سال سابقه فعالیت می باشد. این شرکت دارای رتبه یک تولید نرم افزار سفارش مشتری از سازمان برنامه و بودجه می باشد.
 									 </span>
 									</p>
@@ -163,8 +163,8 @@
 									<h6>تهران</h6>
 									<p align = "right">
 									<span dir = "rtl">
-                
-           
+
+
 											شرکت دانش بنیان اطلاع رسانی پیوند داده ها شرکت تخصصی در حوزه تولید فنآوری اطلاعات (نرم‌افزار) با 20سال سابقه فعالیت می باشد. این شرکت دارای رتبه یک تولید نرم افزار سفارش مشتری از سازمان برنامه و بودجه می باشد.
 									 </span>
 									</p>
@@ -179,8 +179,8 @@
 									<h6>تهران</h6>
 									<p align = "right">
 									<span dir = "rtl">
-                
-           
+
+
 											شرکت دانش بنیان اطلاع رسانی پیوند داده ها شرکت تخصصی در حوزه تولید فنآوری اطلاعات (نرم‌افزار) با 20سال سابقه فعالیت می باشد. این شرکت دارای رتبه یک تولید نرم افزار سفارش مشتری از سازمان برنامه و بودجه می باشد.
 									 </span>
 									</p>
@@ -195,8 +195,8 @@
 									<h6>تهران</h6>
 									<p align = "right">
 									<span dir = "rtl">
-                
-           
+
+
 											شرکت دانش بنیان اطلاع رسانی پیوند داده ها شرکت تخصصی در حوزه تولید فنآوری اطلاعات (نرم‌افزار) با 20سال سابقه فعالیت می باشد. این شرکت دارای رتبه یک تولید نرم افزار سفارش مشتری از سازمان برنامه و بودجه می باشد.
 									 </span>
 									</p>
@@ -211,13 +211,13 @@
 									<h6>تهران</h6>
 									<p align = "right">
 									<span dir = "rtl">
-                
-           
+
+
 											شرکت دانش بنیان اطلاع رسانی پیوند داده ها شرکت تخصصی در حوزه تولید فنآوری اطلاعات (نرم‌افزار) با 20سال سابقه فعالیت می باشد. این شرکت دارای رتبه یک تولید نرم افزار سفارش مشتری از سازمان برنامه و بودجه می باشد.
 									 </span>
 									</p>
 								</div>
-							</div>							
+							</div>
 						</div>
 					</div>
 				</div>	
@@ -236,22 +236,23 @@
 								<li><a href="#">کارآموزی</a></li>
 								<li><a href="#">نیمه وقت</a></li>
 							</ul>
+                            {% for announcement in announcements %}
 							<div class="single-post d-flex flex-row" align = "right" dir = "rtl">
 								<div class="thumb" align = "right">
 									<img src="../../static/img/company.png" alt="">
 									<ul class="tags" >
 										<li>
-											<a href="#">طراحی</a>
+											<a href="#">{{ announcement.employer}}</a>
 										</li>
 										<li>
-											<a href="#">برنامه نویسی</a>
+											<a href="#">{{ announcement.category }}</a>
 										</li>
 									</ul>
 								</div>
 								<div class="details" align = "right" dir = "rtl">
 									<div class="title d-flex flex-row justify-content-between" align = "right">
 										<div class="titles" align = "right" >
-											<a href="single-post.html"><h3>طراح خلاق</h3></a>
+											<a href="{% url 'announcement' announcement.id %}"><h3>{{ announcement.title }}</h3></a>
 										</div>
 
 									</div>
@@ -259,138 +260,16 @@
 											<li><a href="#">اضافه کردن به لیست آگهی ها</a></li>
 											<li><a href="#">درخواست شغل</a></li>
 										</ul>
-									<p>
-										ما به دنبال یک طراح سایت خلاق و با تجربه شریفی هستیم. 
+									<p>{{ announcement.description }}
 									</p>
-									<h5>ساعت کاری: تمام وقت</h5>
-									<p class="address"><span class="lnr lnr-map"></span> تهران، خیابان البرز</p>
-									<p class="address"><span class="lnr lnr-database"> </span> 3m - 5m</p>
+									<h5>{{ announcement.contract_type }}</h5>
+									<p class="address"><span class="lnr lnr-map"></span> {{ announcement.city }}</p>
+									<p class="address"><span class="lnr lnr-database"> </span>{{ announcement.salary_range_start }}
+                                    -{{ announcement.salary_range_limit }}</p>
 								</div>
-							</div>								
-														<div class="single-post d-flex flex-row" align = "right" dir = "rtl">
-								<div class="thumb" align = "right">
-									<img src="../../static/img/company.png" alt="">
-									<ul class="tags" >
-										<li>
-											<a href="#">طراحی</a>
-										</li>
-										<li>
-											<a href="#">برنامه نویسی</a>
-										</li>
-									</ul>
-								</div>
-								<div class="details" align = "right" dir = "rtl">
-									<div class="title d-flex flex-row justify-content-between" align = "right">
-										<div class="titles" align = "right" >
-											<a href="single-post.html"><h3>طراح خلاق</h3></a>
-										</div>
+							</div>
+                            {% endfor %}
 
-									</div>
-										<ul class="btns">
-											<li><a href="#">اضافه کردن به لیست آگهی ها</a></li>
-											<li><a href="#">درخواست شغل</a></li>
-										</ul>
-									<p>
-										ما به دنبال یک طراح سایت خلاق و با تجربه شریفی هستیم. 
-									</p>
-									<h5>ساعت کاری: تمام وقت</h5>
-									<p class="address"><span class="lnr lnr-map"></span> تهران، خیابان البرز</p>
-									<p class="address"><span class="lnr lnr-database"> </span> 3m - 5m</p>
-								</div>
-							</div>								
-							<div class="single-post d-flex flex-row" align = "right" dir = "rtl">
-								<div class="thumb" align = "right">
-									<img src="../../static/img/company.png" alt="">
-									<ul class="tags" >
-										<li>
-											<a href="#">طراحی</a>
-										</li>
-										<li>
-											<a href="#">برنامه نویسی</a>
-										</li>
-									</ul>
-								</div>
-								<div class="details" align = "right" dir = "rtl">
-									<div class="title d-flex flex-row justify-content-between" align = "right">
-										<div class="titles" align = "right" >
-											<a href="single-post.html"><h3>طراح خلاق</h3></a>
-										</div>
-
-									</div>
-										<ul class="btns">
-											<li><a href="#">اضافه کردن به لیست آگهی ها</a></li>
-											<li><a href="#">درخواست شغل</a></li>
-										</ul>
-									<p>
-										ما به دنبال یک طراح سایت خلاق و با تجربه شریفی هستیم. 
-									</p>
-									<h5>ساعت کاری: تمام وقت</h5>
-									<p class="address"><span class="lnr lnr-map"></span> تهران، خیابان البرز</p>
-									<p class="address"><span class="lnr lnr-database"> </span> 3m - 5m</p>
-								</div>
-							</div>								
-														<div class="single-post d-flex flex-row" align = "right" dir = "rtl">
-								<div class="thumb" align = "right">
-									<img src="../../static/img/company.png" alt="">
-									<ul class="tags" >
-										<li>
-											<a href="#">طراحی</a>
-										</li>
-										<li>
-											<a href="#">برنامه نویسی</a>
-										</li>
-									</ul>
-								</div>
-								<div class="details" align = "right" dir = "rtl">
-									<div class="title d-flex flex-row justify-content-between" align = "right">
-										<div class="titles" align = "right" >
-											<a href="single-post.html"><h3>طراح خلاق</h3></a>
-										</div>
-
-									</div>
-										<ul class="btns">
-											<li><a href="#">اضافه کردن به لیست آگهی ها</a></li>
-											<li><a href="#">درخواست شغل</a></li>
-										</ul>
-									<p>
-										ما به دنبال یک طراح سایت خلاق و با تجربه شریفی هستیم. 
-									</p>
-									<h5>ساعت کاری: تمام وقت</h5>
-									<p class="address"><span class="lnr lnr-map"></span> تهران، خیابان البرز</p>
-									<p class="address"><span class="lnr lnr-database"> </span> 3m - 5m</p>
-								</div>
-							</div>								
-														<div class="single-post d-flex flex-row" align = "right" dir = "rtl">
-								<div class="thumb" align = "right">
-									<img src="../../static/img/company.png" alt="">
-									<ul class="tags" >
-										<li>
-											<a href="#">طراحی</a>
-										</li>
-										<li>
-											<a href="#">برنامه نویسی</a>
-										</li>
-									</ul>
-								</div>
-								<div class="details" align = "right" dir = "rtl">
-									<div class="title d-flex flex-row justify-content-between" align = "right">
-										<div class="titles" align = "right" >
-											<a href="single-post.html"><h3>طراح خلاق</h3></a>
-										</div>
-
-									</div>
-										<ul class="btns">
-											<li><a href="#">اضافه کردن به لیست آگهی ها</a></li>
-											<li><a href="#">درخواست شغل</a></li>
-										</ul>
-									<p>
-										ما به دنبال یک طراح سایت خلاق و با تجربه شریفی هستیم. 
-									</p>
-									<h5>ساعت کاری: تمام وقت</h5>
-									<p class="address"><span class="lnr lnr-map"></span> تهران، خیابان البرز</p>
-									<p class="address"><span class="lnr lnr-database"> </span> 3m - 5m</p>
-								</div>
-							</div>								
 							
 							<a class="text-uppercase loadmore-btn mx-auto d-block" href="category.html">نشان دادن آگهی های بیشتر</a>
 

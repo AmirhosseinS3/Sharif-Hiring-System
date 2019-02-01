@@ -121,7 +121,8 @@ def user(request):
     username = request.session['username']
     id = request.session['id']
     isEmployee = request.session['isEmployee']
-    return render(request, 'user.html', {'username': username, 'isEmployee': isEmployee, 'id': id})
+    announcements = Announcement.objects.all()
+    return render(request, 'user.html', {'username': username, 'isEmployee': isEmployee, 'id': id, 'announcements': announcements})
 
 
 def confirm_employee(request, id, code):
@@ -247,3 +248,8 @@ def upload_resume(request, id):
     return render(request, 'upload_resume.html', {
         'form': form
     })
+
+@login_required
+def announcement(request, id):
+    announcement = Announcement.objects.filter(id = id).first()
+    return render(request, 'single-post.html', {'announcement' : announcement})
