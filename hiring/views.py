@@ -5,9 +5,9 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.forms import UserChangeForm
 from hiring.models import Employer, Employee, Announcement
-from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm
+from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm, editEmployeeProfileForm
 
 
 def hiring(request):
@@ -150,6 +150,9 @@ def confirm_employer(request, id, code):
 def success_signup(request):
     return render(request, 'success_signup.html')
 
+@login_required()
+def success_edit_profile(request):
+    return render(request, 'success_edit_profile.html')
 
 @login_required
 def success_announcement(request):
@@ -206,3 +209,20 @@ def announcements(request, id):
     id = id
     return render(request, 'announcements.html', {'announcements': announcements, 'id': id, 'name': name,
                                                   'address': address, 'description': desc})
+
+@login_required
+def edit_profile_employee(request, id):
+    employee = Employee.objects.filter(id = id).first()
+    if request.method == 'GET':
+        form = editEmployeeProfileForm(instance= employee)
+        return render(request, 'edit-profile.html', {'form': form})
+    elif request.method == 'POST':
+        form = editEmployeeProfileForm(request.POST, instance= employee)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/hiring/success_edit_profile')
+        else:
+            return render(request, 'edit-profile.html', {'form': form})
+
+
+

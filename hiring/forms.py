@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth import password_validation
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.core.mail import send_mail, EmailMessage
 from django.forms import ModelForm, BaseModelForm
 from django.http import HttpResponseRedirect
@@ -97,6 +97,47 @@ class CreateAnnouncementForm(ModelForm):
 
     class Meta:
         model = Announcement
-        fields = ['title', 'category', 'contract_type', 'salary_range_start',
+        fields = ('title', 'category', 'contract_type', 'salary_range_start',
                   'salary_range_limit', 'city', 'description', 'applicants',
-                  'experience']
+                  'experience')
+
+class editEmployeeProfileForm(UserChangeForm):
+    name = forms.CharField(max_length=30, label='نام و نام خانوادگی')
+    email = forms.EmailField(max_length=254, label='ایمیل')
+    # password1 = forms.CharField(
+    #     label='رمز عبور',
+    #     strip=False,
+    #     widget=forms.PasswordInput,
+    # )
+    # password2 = forms.CharField(
+    #     label='تکرار رمز عبور',
+    #     widget=forms.PasswordInput,
+    #     strip=False,
+    # )
+    skills = forms.CharField(max_length= 200 , label= 'مهارت ها')
+    city = forms.CharField(max_length=40, label='شهر')
+    experience = forms.CharField(max_length=200, label='تجارب کاری')
+    MAJORS = (
+        ('CoE', 'مهندسی کامپیوتر'),
+        ('ElE', 'مهندسی برق'),
+        ('MeE', 'مهندسی مکانیک'),
+        ('MaE', 'مهندسی مواد'),
+        ('ChE', 'مهندسی شیمی'),
+        ('IE', 'مهندسی صنایع'),
+        ('CiE', 'مهندسی عمران'),
+    )
+    major = forms.CharField(widget= forms.RadioSelect(choices= MAJORS), label= 'رشته تحصیلی')
+    ALUMNI_CHOICES = [
+        (True, 'بله'),
+        (False, 'خیر'),
+    ]
+    password = None
+    description = forms.CharField(max_length=200, label='توضیحات بیشتر')
+    # checkbox = forms.BooleanField(required=False, initial=True)
+    isAlumni= forms.CharField(label='آیا فارغ التحصیل شده اید؟', widget=forms.RadioSelect(choices=ALUMNI_CHOICES))
+    # # isAlumni = forms.BooleanField(required=False, initial=False,label='آیا فارغ التحصیل شده اید؟')
+    class Meta:
+        model = Employee
+        fields = ('name', 'email', 'skills', 'city','experience', 'major', 'description', 'isAlumni')
+
+

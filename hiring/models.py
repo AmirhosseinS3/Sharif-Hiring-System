@@ -6,6 +6,21 @@ class Employee(User):
     name = models.CharField(max_length=30, null=False)
     confirmation_code = models.CharField(max_length=6)
     activated = models.BooleanField(default=False)
+    skills = models.CharField(max_length=200, default='None')
+    city = models.CharField(max_length=40, default='Tehran')
+    experience = models.CharField(max_length=200, default='None')
+    description = models.CharField(max_length=200, default= 'None')
+    MAJORS = (
+        ('CoE', 'مهندسی کامپیوتر'),
+        ('ElE', 'مهندسی برق'),
+        ('MeE', 'مهندسی مکانیک'),
+        ('MaE', 'مهندسی مواد'),
+        ('ChE', 'مهندسی شیمی'),
+        ('IE', 'مهندسی صنایع'),
+        ('CiE', 'مهندسی عمران'),
+    )
+    major = models.CharField(max_length=50, choices=MAJORS)
+    isAlumni = models.BooleanField(default=False)
 
 
 class Employer(User):

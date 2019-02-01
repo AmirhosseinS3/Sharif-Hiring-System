@@ -27,5 +27,9 @@ urlpatterns = [
     path(r'confirm_fail/', views.confirm_fail, name='confirm_fail'),
     path(r'create_announcement/<int:id>/', views.create_announcement, name='create_announcement'),
     path(r'announcements/<int:id>/', views.announcements, name='announcements'),
+    path(r'edit_profile/<int:id>', views.edit_profile_employee, name = "edit_profile_employee"),
+    path(r'success_edit_profile', views.success_edit_profile, name = "success_edit_profile"),
+    path(r'upload_resume/<int: id>', views.upload_resume, name="upload_resume"),
+
 ]
 
