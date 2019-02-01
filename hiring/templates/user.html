@@ -43,8 +43,12 @@
 				          <li><a href="about-us.html">درباره ما</a></li>
 				          <li><a href="contact.html">ارتباط با ما</a></li>
 				          <li class="menu-has-children"><a href="">مشخصات</a>
+                            {% if isEmployee %}
 						  <li class="menu-has-children"><a href="">آگهی های من</a>
-				          <li><a class="ticker-btn" href="#">خروج</a></li>			          				          
+                            {% else %}
+                                <li class="menu-has-children"><a href="{% url 'announcements' id %}">آگهی های من</a>
+                            {% endif %}
+				          <li><a class="ticker-btn" href="">خروج</a></li>
 				        </ul>
 				      </nav><!-- #nav-menu-container -->		    		
 			    	</div>
@@ -102,7 +106,7 @@
 									</div>
 									<div class="col-lg-1 form-cols">
 									    <button type="button" class="btn btn-info">
-									      <span class="lnr lnr-magnifier"></span> بیاب
+									      <span class="lnr lnr-magnifier">بیاب</span>
 									    </button>
 									</div>								
 								</div>
@@ -247,7 +251,7 @@
 								<div class="details" align = "right" dir = "rtl">
 									<div class="title d-flex flex-row justify-content-between" align = "right">
 										<div class="titles" align = "right" >
-											<a href="single.html"><h3>طراح خلاق</h3></a>
+											<a href="single-post.html"><h3>طراح خلاق</h3></a>
 										</div>
 
 									</div>
@@ -278,7 +282,7 @@
 								<div class="details" align = "right" dir = "rtl">
 									<div class="title d-flex flex-row justify-content-between" align = "right">
 										<div class="titles" align = "right" >
-											<a href="single.html"><h3>طراح خلاق</h3></a>
+											<a href="single-post.html"><h3>طراح خلاق</h3></a>
 										</div>
 
 									</div>
@@ -309,7 +313,7 @@
 								<div class="details" align = "right" dir = "rtl">
 									<div class="title d-flex flex-row justify-content-between" align = "right">
 										<div class="titles" align = "right" >
-											<a href="single.html"><h3>طراح خلاق</h3></a>
+											<a href="single-post.html"><h3>طراح خلاق</h3></a>
 										</div>
 
 									</div>
@@ -340,7 +344,7 @@
 								<div class="details" align = "right" dir = "rtl">
 									<div class="title d-flex flex-row justify-content-between" align = "right">
 										<div class="titles" align = "right" >
-											<a href="single.html"><h3>طراح خلاق</h3></a>
+											<a href="single-post.html"><h3>طراح خلاق</h3></a>
 										</div>
 
 									</div>
@@ -371,7 +375,7 @@
 								<div class="details" align = "right" dir = "rtl">
 									<div class="title d-flex flex-row justify-content-between" align = "right">
 										<div class="titles" align = "right" >
-											<a href="single.html"><h3>طراح خلاق</h3></a>
+											<a href="single-post.html"><h3>طراح خلاق</h3></a>
 										</div>
 
 									</div>
@@ -407,7 +411,7 @@
 								<div class="active-relatedjob-carusel">
 									<div class="single-rated">
 										<img class="img-fluid" src="../../static/img/alibaba.jpg" alt="">
-										<a href="single.html"><h4>برنامه نویس سایت</h4></a>
+										<a href="single-post.html"><h4>برنامه نویس سایت</h4></a>
 										<h6>شرکت علی بابا </h6>
 										<p>
 											علی‌بابا بهترین مکان برای آن دسته از آدم‌هایی است که آموزش‌پذیر هستند و شیفته‌ی تجربه کردن و کار تیمی!
@@ -419,7 +423,7 @@
 									</div>
 									<div class="single-rated">
 										<img class="img-fluid" src="../../static/img/alibaba.jpg" alt="">
-										<a href="single.html"><h4>برنامه نویس سایت</h4></a>
+										<a href="single-post.html"><h4>برنامه نویس سایت</h4></a>
 										<h6>شرکت علی بابا </h6>
 										<p>
 											علی‌بابا بهترین مکان برای آن دسته از آدم‌هایی است که آموزش‌پذیر هستند و شیفته‌ی تجربه کردن و کار تیمی!
@@ -431,7 +435,7 @@
 									</div>
 									<div class="single-rated">
 										<img class="img-fluid" src="../../static/img/alibaba.jpg" alt="">
-										<a href="single.html"><h4>برنامه نویس سایت</h4></a>
+										<a href="single-post.html"><h4>برنامه نویس سایت</h4></a>
 										<h6>شرکت علی بابا </h6>
 										<p>
 											علی‌بابا بهترین مکان برای آن دسته از آدم‌هایی است که آموزش‌پذیر هستند و شیفته‌ی تجربه کردن و کار تیمی!
