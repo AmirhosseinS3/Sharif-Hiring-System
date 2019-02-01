@@ -32,6 +32,8 @@ urlpatterns = [
     path(r'upload_resume/<int:id>', views.upload_resume, name="upload_resume"),
     path(r'success_upload_resume', views.success_upload_resume, name="success_upload_resume"),
     path(r'announcement/<int:id>', views.announcement, name = "announcement"),
+    path(r'announcement_comment/<int:id>', views.announcement_comment, name = "announcement_comment"),
+    path(r'success_comment', views.success_comment, name = "success_comment"),
 
 ]
 

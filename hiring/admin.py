@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 from django.contrib.sessions.models import Session
-from hiring.models import Employee, Employer, Announcement
+from hiring.models import Employee, Employer, Announcement, Resume, Comment
 
 
 class SessionAdmin(ModelAdmin):
@@ -23,3 +23,5 @@ class EmployerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Employer, EmployerAdmin)
+admin.site.register(Comment)
+admin.site.register(Resume)

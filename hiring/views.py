@@ -6,8 +6,8 @@ from django.views import generic
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserChangeForm
-from hiring.models import Employer, Employee, Announcement, Resume
-from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm, editEmployeeProfileForm, ResumeForm
+from hiring.models import Employer, Employee, Announcement, Resume, Comment
+from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm, editEmployeeProfileForm, ResumeForm, CommentForm
 
 
 
@@ -152,6 +152,8 @@ def confirm_employer(request, id, code):
 def success_signup(request):
     return render(request, 'success_signup.html')
 
+def success_comment(request):
+    return render(request, 'success_comment.html')
 @login_required()
 def success_edit_profile(request):
     return render(request, 'success_edit_profile.html')
@@ -252,4 +254,24 @@ def upload_resume(request, id):
 @login_required
 def announcement(request, id):
     announcement = Announcement.objects.filter(id = id).first()
-    return render(request, 'single-post.html', {'announcement' : announcement})
+    comments = Comment.objects.filter(announcement_id = id)
+    return render(request, 'single-post.html', {'announcement' : announcement , 'comments' : comments})
+
+@login_required
+def announcement_comment(request, id):
+    employee_username = request.session['username']
+    employee = Employee.objects.filter(username= employee_username).first()
+    employee_id = employee.id
+    announcement = Announcement.objects.filter(id = id).first()
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.announcement = announcement
+            comment.employee = employee
+            comment.save()
+            return redirect('/hiring/success_comment')
+    else:
+        form = CommentForm()
+    return render(request, 'comment.html', {'form': form, 'id' : employee.id})
+

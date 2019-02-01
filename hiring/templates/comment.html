@@ -30,6 +30,7 @@
 			<link rel="stylesheet" href="../../static/css/main.css">
 		</head>
 		<body>
+
 			  <header id="header">
 			    <div class="container">
 			    	<div class="row align-items-center justify-content-between d-flex">
@@ -41,9 +42,13 @@
 				          <li class="menu-active"><a href="index.html">خانه</a></li>
 				          <li><a href="about-us.html">درباره ما</a></li>
 				          <li><a href="contact.html">ارتباط با ما</a></li>
-				          <li class="menu-has-children"><a href="">مشخصات</a>
+				          <li class="menu-has-children"><a href="{% url 'edit_profile_employee' id %}">مشخصات</a>
+                            {% if isEmployee %}
 						  <li class="menu-has-children"><a href="">آگهی های من</a>
-				          <li><a class="ticker-btn" href="#">خروج</a></li>			          				          
+                            {% else %}
+                                <li class="menu-has-children"><a href="{% url 'announcements' id %}">آگهی های من</a>
+                            {% endif %}
+				          <li><a class="ticker-btn" href="">خروج</a></li>
 				        </ul>
 				      </nav><!-- #nav-menu-container -->		    		
 			    	</div>
@@ -51,100 +56,194 @@
 			  </header><!-- #header -->
 
 
-			<!--start banner Area-->
+			<!-- start banner Area -->
 			<section class="banner-area relative" id="home">	
 				<div class="overlay overlay-bg"></div>
 				<div class="container">
-					<div class="row d-flex align-items-center justify-content-center">
-						<div class="about-content col-lg-12">
+					<div class="row fullscreen d-flex align-items-center justify-content-center">
+						<div class="banner-content col-lg-12">
 							<h1 class="text-white">
-								آگهی استخدام
+								به سامانه کاریابی شریف خوش آمدید			
 							</h1>	
-							</div>											
+							<form action="search.html" class="serach-form-area">
+								<div class="row justify-content-center form-wrap">
+									<div class="col-lg-4 form-cols">
+										<input type="text" class="form-control" name="search" placeholder="عنوان شغل">
+									</div>
+									<div class="col-lg-3 form-cols">
+										<div class="default-select">
+											<select>
+												<option value="1">محل</option>
+												<option value="2">تهران</option>
+												<option value="3">مشهد</option>
+												<option value="4">تبریز</option>
+												<option value="5">اصفهان</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-lg-3 form-cols">
+										<div class="default-select">
+											<select>
+												<option value="1">دسته بندی</option>
+												<option value="2">مهندسی کامپیوتر</option>
+												<option value="3">مهندسی برق</option>
+												<option value="4">مهندسی مکانیک</option>
+												<option value="5">مهندسی مواد</option>
+												<option value="6">مهندسی شیمی</option>
+												<option value="7">مهندسی صنایع</option>
+												
+											</select>
+										</div>										
+									</div>
+									<div class="col-lg-2 form-cols">
+										<div class="default-select" id="default-selects2">
+											<select>
+												<option value="1">ساعات کاری</option>
+												<option value="2">تمام وقت</option>
+												<option value="3">پاره وقت</option>
+											</select>
+										</div>										
+									</div>
+									<div class="col-lg-1 form-cols">
+									    <button type="button" class="btn btn-info">
+									      <span class="lnr lnr-magnifier">بیاب</span>
+									    </button>
+									</div>								
+								</div>
+							</form>	
+						</div>											
 					</div>
 				</div>
 			</section>
 			<!-- End banner Area -->	
-				
+			
+			<!-- Start popular-post Area -->
+<section class="popular-post-area pt-100">
+				<div class="container" align = "right" >
+					<div class="row align-items-center">
+						<div class="active-popular-post-carusel">
+							<div class="single-popular-post d-flex flex-row">
+								<div class="thumb">
+									<img src="../../static/img/p2.png" alt="">
+								</div>
+								<div class="details">
+									<a href="#"><h4>backend برنامه نویس</h4></a>
+									<h6>تهران</h6>
+									<p align = "right">
+									<span dir = "rtl">
+
+
+											شرکت دانش بنیان اطلاع رسانی پیوند داده ها شرکت تخصصی در حوزه تولید فنآوری اطلاعات (نرم‌افزار) با 20سال سابقه فعالیت می باشد. این شرکت دارای رتبه یک تولید نرم افزار سفارش مشتری از سازمان برنامه و بودجه می باشد.
+									 </span>
+									</p>
+								</div>
+							</div>
+							<div class="single-popular-post d-flex flex-row">
+								<div class="thumb">
+									<img src="../../static/img/p2.png" alt="">
+								</div>
+								<div class="details">
+									<a href="#"><h4>backend برنامه نویس</h4></a>
+									<h6>تهران</h6>
+									<p align = "right">
+									<span dir = "rtl">
+
+
+											شرکت دانش بنیان اطلاع رسانی پیوند داده ها شرکت تخصصی در حوزه تولید فنآوری اطلاعات (نرم‌افزار) با 20سال سابقه فعالیت می باشد. این شرکت دارای رتبه یک تولید نرم افزار سفارش مشتری از سازمان برنامه و بودجه می باشد.
+									 </span>
+									</p>
+								</div>
+							</div>
+							<div class="single-popular-post d-flex flex-row">
+								<div class="thumb">
+									<img src="../../static/img/p2.png" alt="">
+								</div>
+								<div class="details">
+									<a href="#"><h4>backend برنامه نویس</h4></a>
+									<h6>تهران</h6>
+									<p align = "right">
+									<span dir = "rtl">
+
+
+											شرکت دانش بنیان اطلاع رسانی پیوند داده ها شرکت تخصصی در حوزه تولید فنآوری اطلاعات (نرم‌افزار) با 20سال سابقه فعالیت می باشد. این شرکت دارای رتبه یک تولید نرم افزار سفارش مشتری از سازمان برنامه و بودجه می باشد.
+									 </span>
+									</p>
+								</div>
+							</div>
+							<div class="single-popular-post d-flex flex-row">
+								<div class="thumb">
+									<img src="../../static/img/p2.png" alt="">
+								</div>
+								<div class="details">
+									<a href="#"><h4>backend برنامه نویس</h4></a>
+									<h6>تهران</h6>
+									<p align = "right">
+									<span dir = "rtl">
+
+
+											شرکت دانش بنیان اطلاع رسانی پیوند داده ها شرکت تخصصی در حوزه تولید فنآوری اطلاعات (نرم‌افزار) با 20سال سابقه فعالیت می باشد. این شرکت دارای رتبه یک تولید نرم افزار سفارش مشتری از سازمان برنامه و بودجه می باشد.
+									 </span>
+									</p>
+								</div>
+							</div>
+							<div class="single-popular-post d-flex flex-row">
+								<div class="thumb">
+									<img src="../../static/img/p2.png" alt="">
+								</div>
+								<div class="details">
+									<a href="#"><h4>backend برنامه نویس</h4></a>
+									<h6>تهران</h6>
+									<p align = "right">
+									<span dir = "rtl">
+
+
+											شرکت دانش بنیان اطلاع رسانی پیوند داده ها شرکت تخصصی در حوزه تولید فنآوری اطلاعات (نرم‌افزار) با 20سال سابقه فعالیت می باشد. این شرکت دارای رتبه یک تولید نرم افزار سفارش مشتری از سازمان برنامه و بودجه می باشد.
+									 </span>
+									</p>
+								</div>
+							</div>
+							<div class="single-popular-post d-flex flex-row">
+								<div class="thumb">
+									<img src="../../static/img/p2.png" alt="">
+								</div>
+								<div class="details">
+									<a href="#"><h4>backend برنامه نویس</h4></a>
+									<h6>تهران</h6>
+									<p align = "right">
+									<span dir = "rtl">
+
+
+											شرکت دانش بنیان اطلاع رسانی پیوند داده ها شرکت تخصصی در حوزه تولید فنآوری اطلاعات (نرم‌افزار) با 20سال سابقه فعالیت می باشد. این شرکت دارای رتبه یک تولید نرم افزار سفارش مشتری از سازمان برنامه و بودجه می باشد.
+									 </span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</section>
+		
+			<!-- End popular-post Area -->
+			
 			<!-- Start post Area -->
 			<section class="post-area section-gap">
-				<div class="container" align = "right">
+				<div class="container" align = "right" >
 					<div class="row justify-content-center d-flex">
 						<div class="col-lg-8 post-list">
-						<div class="single-post d-flex flex-row" align = "right" dir = "rtl">
-								<div class="thumb" align = "right">
-									<img src="../../static/img/company.png" alt="" style="margin: 10px">
-								</div>
-								<div class="details" align = "right" dir = "rtl">
-									<div class="title d-flex flex-row justify-content-between" align = "right">
-										<div class="titles" align = "right" >
-											<a href="single-post.html"><h3>{{ announcement.title }}</h3></a>
-										</div>
 
-									</div>
-										<ul class="btns" style="margin: 10px">
-											<li><a href="#">اضافه کردن به لیست آگهی ها</a></li>
-										</ul>
-									<p>
-										{{ announcement.description }}
-									</p>
-									<h5>{{ announcement.contranct_type }}</h5>
-									<p class="address"><span class="lnr lnr-map"></span> {{ announcement.city }}</p>
-								</div>
-							</div>	
-							<div class="single-post job-details">
-								<h4 class="single-title">ما به دنبال چه کسانی هستیم</h4>
-								<p>
-									{{ announcement.category }}
-									</p>
+                         <h1>نظر جدید</h1>
+                     <form method="POST" class="post-form">
+                         {% csrf_token %}
+                      {{ form.as_p }}
+                    <button type="submit" class="text-uppercase loadmore-btn mx-auto d-block">ثبت نظر</button>
+    </form>
 
-							</div>
-							<div class="single-post job-experience" align = "right" dir = "rtl">
-								<h4 class="single-title">تجربیات لازم</h4>
-								<ul>
-									<li>
-										<img src="../../static/img/pages/list.jpg" alt="">
-										<span>{{ announcement.experience }} </span>
-									</li>
 
-								</ul>
-							</div>
-							<div class="single-post job-experience" dir = "rtl">
-								<h4 class="single-title">مزایای کاری</h4>
-								<ul>
-									<li>
-										<img src="../../static/img/pages/list.jpg" alt="">
-										<span>حقوق :
-                                        {{ announcement.salary_range_start }} - {{ announcement.salary_range_limit }}
-                                        </span>
-									</li>
-								</ul>
-							</div>
-                            <div class="single-post job-experience" dir = "rtl">
-								<h4 class="single-title">نظرات</h4>
-                                {% for comment in comments %}
-								<ul>
-									<li>
-										<img src="../../static/img/pages/list.jpg" alt="">
-										<span>{{ comment.employee.name }} :
-                                        <p>
-                                            {{ comment.text }}
-                                        </p>
-
-                                        </span>
-									</li>
-								</ul>
-                                {% endfor %}
-
-							<a class="text-uppercase loadmore-btn mx-auto d-block"
-                               href="{% url 'announcement_comment' announcement.id %}">به این آگهی نظر بدهید</a>
-
-							</div>
 						</div>
 						<div class="col-lg-4 sidebar">
 							<div class="single-slidebar">
 								<h4>جست و جو بر اساس شهر</h4>
-								<ul class="cat-list">
+																<ul class="cat-list">
 									<li dir = "rtl"><a class="justify-content-between d-flex" href="category.html"><p>تهران</p><span>137</span></a></li>
 									<li dir = "rtl"><a class="justify-content-between d-flex" href="category.html"><p>مشهد</p><span>57</span></a></li>
 									<li dir = "rtl"><a class="justify-content-between d-flex" href="category.html"><p>اصفهان</p><span>33</span></a></li>
@@ -213,13 +312,13 @@
 				</div>	
 			</section>
 			<!-- End post Area -->
-
-
+				
 
 			<!-- start footer Area -->		
 			<footer class="footer-area section-gap">
 				<div class="container">
-									<div class="row footer-bottom d-flex justify-content-between">
+
+					<div class="row footer-bottom d-flex justify-content-between">
 						<p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>

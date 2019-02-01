@@ -6,7 +6,7 @@ from django.forms import ModelForm, BaseModelForm
 from django.http import HttpResponseRedirect
 from django.utils.crypto import get_random_string
 
-from .models import Employee, Employer, Announcement, Resume
+from .models import Employee, Employer, Announcement, Resume, Comment
 
 
 class SignUpEmployerForm(UserCreationForm):
@@ -149,3 +149,10 @@ class ResumeForm(forms.ModelForm):
     class Meta:
         model = Resume
         fields = ( 'document',)
+
+
+class CommentForm(forms.ModelForm):
+    text = forms.CharField(label='نظر' , widget=forms.Textarea)
+    class Meta:
+        model = Comment
+        fields = ('text',)

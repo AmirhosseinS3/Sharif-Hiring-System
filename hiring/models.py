@@ -63,3 +63,11 @@ class Announcement(models.Model):
     employer = models.ForeignKey(to=Employer, on_delete=models.CASCADE)
     is_allowed = models.BooleanField(default=False)
 
+class Comment(models.Model):
+    announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE, related_name='comments')
+    employee = models.ForeignKey(Employee, on_delete= models.CASCADE, related_name= 'comments')
+    text = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.text
