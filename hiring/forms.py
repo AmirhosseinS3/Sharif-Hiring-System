@@ -1,9 +1,7 @@
 from django import forms
-from django.contrib.auth import password_validation
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.core.mail import send_mail, EmailMessage
-from django.forms import ModelForm, BaseModelForm
-from django.http import HttpResponseRedirect
+from django.core.mail import EmailMessage
+from django.forms import ModelForm
 from django.utils.crypto import get_random_string
 
 from .models import Employee, Employer, Announcement, Resume, Comment
@@ -62,7 +60,8 @@ class SignUpEmployeeForm(UserCreationForm):
         employee.confirmation_code = unique_code
         employee.save()
         email_message = EmailMessage('Confirm your account!',
-                                     'http://127.0.0.1:8000/hiring/confirm_employee/' + str(employee.id) + '/' + str(unique_code), '',
+                                     'http://127.0.0.1:8000/hiring/confirm_employee/' + str(employee.id) + '/' + str(
+                                         unique_code), '',
                                      [self.cleaned_data['email']])
         email_message.send()
 
@@ -101,7 +100,8 @@ class CreateAnnouncementForm(ModelForm):
                   'salary_range_limit', 'city', 'description', 'applicants',
                   'experience')
 
-class editEmployeeProfileForm(UserChangeForm):
+
+class EditEmployeeProfileForm(UserChangeForm):
     name = forms.CharField(max_length=30, label='نام و نام خانوادگی')
     email = forms.EmailField(max_length=254, label='ایمیل')
     # password1 = forms.CharField(
@@ -114,7 +114,7 @@ class editEmployeeProfileForm(UserChangeForm):
     #     widget=forms.PasswordInput,
     #     strip=False,
     # )
-    skills = forms.CharField(max_length= 200 , label= 'مهارت ها')
+    skills = forms.CharField(max_length=200, label='مهارت ها')
     city = forms.CharField(max_length=40, label='شهر')
     experience = forms.CharField(max_length=200, label='تجارب کاری')
     MAJORS = (
@@ -126,7 +126,7 @@ class editEmployeeProfileForm(UserChangeForm):
         ('IE', 'مهندسی صنایع'),
         ('CiE', 'مهندسی عمران'),
     )
-    major = forms.CharField(widget= forms.RadioSelect(choices= MAJORS), label= 'رشته تحصیلی')
+    major = forms.CharField(widget=forms.RadioSelect(choices=MAJORS), label='رشته تحصیلی')
     ALUMNI_CHOICES = [
         (True, 'بله'),
         (False, 'خیر'),
@@ -134,11 +134,12 @@ class editEmployeeProfileForm(UserChangeForm):
     password = None
     description = forms.CharField(max_length=200, label='توضیحات بیشتر')
     # checkbox = forms.BooleanField(required=False, initial=True)
-    isAlumni= forms.CharField(label='آیا فارغ التحصیل شده اید؟', widget=forms.RadioSelect(choices=ALUMNI_CHOICES))
+    isAlumni = forms.CharField(label='آیا فارغ التحصیل شده اید؟', widget=forms.RadioSelect(choices=ALUMNI_CHOICES))
+
     # # isAlumni = forms.BooleanField(required=False, initial=False,label='آیا فارغ التحصیل شده اید؟')
     class Meta:
         model = Employee
-        fields = ('name', 'email', 'skills', 'city','experience', 'major', 'description', 'isAlumni')
+        fields = ('name', 'email', 'skills', 'city', 'experience', 'major', 'description', 'isAlumni')
 
 
 class ResumeForm(forms.ModelForm):
@@ -148,11 +149,12 @@ class ResumeForm(forms.ModelForm):
 
     class Meta:
         model = Resume
-        fields = ( 'document',)
+        fields = ('document',)
 
 
 class CommentForm(forms.ModelForm):
-    text = forms.CharField(label='نظر' , widget=forms.Textarea)
+    text = forms.CharField(label='نظر', widget=forms.Textarea)
+
     class Meta:
         model = Comment
         fields = ('text',)

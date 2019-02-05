@@ -7,8 +7,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserChangeForm
 from hiring.models import Employer, Employee, Announcement, Resume, Comment
-from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm, editEmployeeProfileForm, ResumeForm, CommentForm
-
+from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm, editEmployeeProfileForm, ResumeForm, \
+    CommentForm
 
 
 def hiring(request):
@@ -124,34 +124,6 @@ def user(request):
     return render(request, 'user.html', {'username': username, 'isEmployee': isEmployee, 'id': id})
 
 
-def confirm_employee(request, id, code):
-    if request.method == 'GET':
-        employee = Employee.objects.get(id=id)
-        actual_code = employee.confirmation_code
-        if code == actual_code:
-            employee.activated = True
-            employee.save()
-            return HttpResponseRedirect('/hiring/confirm_success/')
-        else:
-            return HttpResponseRedirect('/hiring/confirm_failed/')
-
-
-def confirm_employer(request, id, code):
-    if request.method == 'GET':
-        employer = Employer.objects.get(id=id)
-        actual_code = employer.confirmation_code
-        if code == actual_code:
-            employer.activated = True
-            employer.save()
-            return HttpResponseRedirect('/hiring/confirm_success')
-        else:
-            return HttpResponseRedirect('/hiring/confirm_failed')
-
-
-def success_signup(request):
-    return render(request, 'success_signup.html')
-
-
 @login_required
 def success_announcement(request):
     return render(request, 'success_announcement.html')
@@ -180,11 +152,6 @@ def create_announcement(request, id):
         if form.is_valid():
             data = form.cleaned_data
             announce = Announcement(title=data['title'], category=data['category'],
-                                    contract_type=data['contract_type'],
-                                    salary_range_start=data['salary_range_start'],
-                                    salary_range_limit=data['salary_range_limit'],
-                                    city=data['city'], description=data['description'],
-                                    applicants=data['applicants'], experience=data['experience'],
                                     employer=Employer.objects.get(id=id))
             announce.save()
             print('good')
@@ -199,19 +166,12 @@ def logout_user(requet):
 
 @login_required
 def announcements(request, id):
-    emp = Employer.objects.filter(id=id).first()
-    announcements = Announcement.objects.filter(employer=emp).filter(is_allowed=True)
-    name = emp.name
-    address = emp.address
-    desc = emp.description
-    id = id
-    return render(request, 'announcements.html', {'announcements': announcements, 'id': id, 'name': name,
-                                                  'address': address, 'description': desc})
     username = request.session['username']
     id = request.session['id']
     isEmployee = request.session['isEmployee']
     announcements = Announcement.objects.all()
-    return render(request, 'user.html', {'username': username, 'isEmployee': isEmployee, 'id': id, 'announcements': announcements})
+    return render(request, 'user.html',
+                  {'username': username, 'isEmployee': isEmployee, 'id': id, 'announcements': announcements})
 
 
 def confirm_employee(request, id, code):
@@ -241,24 +201,23 @@ def confirm_employer(request, id, code):
 def success_signup(request):
     return render(request, 'success_signup.html')
 
+
 def success_comment(request):
     return render(request, 'success_comment.html')
+
+
 @login_required()
 def success_edit_profile(request):
     return render(request, 'success_edit_profile.html')
+
 
 @login_required
 def success_announcement(request):
     return render(request, 'success_announcement.html')
 
+
 def success_upload_resume(request):
     return render(request, 'success_upload_resume.html')
-def confirm_success(request):
-    return render(request, 'confirm_success.html')
-
-
-def confirm_fail(request):
-    return render(request, 'confirm_fail.html')
 
 
 # class CreateAnnouncement(generic.CreateView):
@@ -275,13 +234,7 @@ def create_announcement(request, id):
         form = CreateAnnouncementForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            announce = Announcement(title=data['title'], category=data['category'],
-                                    contract_type=data['contract_type'],
-                                    salary_range_start=data['salary_range_start'],
-                                    salary_range_limit=data['salary_range_limit'],
-                                    city=data['city'], description=data['description'],
-                                    applicants=data['applicants'], experience=data['experience'],
-                                    employer=Employer.objects.get(id=id))
+            announce = Announcement(title=data['title'], category=data['category'], employer=Employer.objects.get(id=id))
             announce.save()
             print('good')
             return HttpResponseRedirect('/hiring/success_announcement')
@@ -304,26 +257,25 @@ def announcements(request, id):
     return render(request, 'announcements.html', {'announcements': announcements, 'id': id, 'name': name,
                                                   'address': address, 'description': desc})
 
+
 @login_required
 def edit_profile_employee(request, id):
-    employee = Employee.objects.filter(id = id).first()
+    employee = Employee.objects.filter(id=id).first()
     if request.method == 'GET':
-        form = editEmployeeProfileForm(instance= employee)
-        return render(request, 'edit-profile.html', {'form': form, 'id' : id})
+        form = editEmployeeProfileForm(instance=employee)
+        return render(request, 'edit-profile.html', {'form': form, 'id': id})
     elif request.method == 'POST':
-        form = editEmployeeProfileForm(request.POST, instance= employee)
+        form = editEmployeeProfileForm(request.POST, instance=employee)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/hiring/success_edit_profile')
         else:
-            return render(request, 'edit-profile.html', {'form': form, 'id' : id})
-
-
+            return render(request, 'edit-profile.html', {'form': form, 'id': id})
 
 
 @login_required
 def upload_resume(request, id):
-    employee = Employee.objects.filter(id = id).first()
+    employee = Employee.objects.filter(id=id).first()
     if request.method == 'POST':
         form = ResumeForm(request.POST, request.FILES)
         if form.is_valid():
@@ -340,18 +292,20 @@ def upload_resume(request, id):
         'form': form
     })
 
+
 @login_required
 def announcement(request, id):
-    announcement = Announcement.objects.filter(id = id).first()
-    comments = Comment.objects.filter(announcement_id = id)
-    return render(request, 'single-post.html', {'announcement' : announcement , 'comments' : comments})
+    announcement = Announcement.objects.filter(id=id).first()
+    comments = Comment.objects.filter(announcement_id=id)
+    return render(request, 'single-post.html', {'announcement': announcement, 'comments': comments})
+
 
 @login_required
 def announcement_comment(request, id):
     employee_username = request.session['username']
-    employee = Employee.objects.filter(username= employee_username).first()
+    employee = Employee.objects.filter(username=employee_username).first()
     employee_id = employee.id
-    announcement = Announcement.objects.filter(id = id).first()
+    announcement = Announcement.objects.filter(id=id).first()
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -362,5 +316,4 @@ def announcement_comment(request, id):
             return redirect('/hiring/success_comment')
     else:
         form = CommentForm()
-    return render(request, 'comment.html', {'form': form, 'id' : employee.id})
-
+    return render(request, 'comment.html', {'form': form, 'id': employee.id})
