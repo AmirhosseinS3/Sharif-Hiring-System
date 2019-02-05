@@ -1,10 +1,12 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 class Resume(models.Model):
     description = models.CharField(max_length=255, blank=True)
     document = models.FileField(upload_to='documents/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
+
 
 class Employee(User):
     name = models.CharField(max_length=30, null=False)
@@ -13,7 +15,7 @@ class Employee(User):
     skills = models.CharField(max_length=200, default='None')
     city = models.CharField(max_length=40, default='Tehran')
     experience = models.CharField(max_length=200, default='None')
-    description = models.CharField(max_length=200, default= 'None')
+    description = models.CharField(max_length=200, default='None')
     MAJORS = (
         ('CoE', 'مهندسی کامپیوتر'),
         ('ElE', 'مهندسی برق'),
@@ -25,8 +27,7 @@ class Employee(User):
     )
     major = models.CharField(max_length=50, choices=MAJORS)
     isAlumni = models.BooleanField(default=False)
-    resume = models.ForeignKey(Resume, on_delete='SET_NULL', related_name='employee',  null=True, blank=True)
-
+    resume = models.ForeignKey(Resume, on_delete='SET_NULL', related_name='employee', null=True, blank=True)
 
 
 class Employer(User):
@@ -63,9 +64,10 @@ class Announcement(models.Model):
     employer = models.ForeignKey(to=Employer, on_delete=models.CASCADE)
     is_allowed = models.BooleanField(default=False)
 
+
 class Comment(models.Model):
     announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE, related_name='comments')
-    employee = models.ForeignKey(Employee, on_delete= models.CASCADE, related_name= 'comments')
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='comments')
     text = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
 
