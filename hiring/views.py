@@ -1,13 +1,11 @@
 from django.contrib.auth import authenticate, login
-from django.core.mail import EmailMessage
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserChangeForm
-from hiring.models import Employer, Employee, Announcement, Resume, Comment
-from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm, editEmployeeProfileForm, ResumeForm, \
+from hiring.models import Employer, Employee, Announcement, Comment
+from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm, ResumeForm, \
     CommentForm
 
 

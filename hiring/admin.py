@@ -4,8 +4,6 @@ from django.contrib.sessions.models import Session
 from hiring.models import Employee, Employer, Announcement, Resume, Comment
 
 
-
-
 class SessionAdmin(ModelAdmin):
 
     def _session_data(self, obj):
@@ -15,16 +13,12 @@ class SessionAdmin(ModelAdmin):
 
 
 admin.site.register(Employee)
-# admin.site.register(Employer)
 admin.site.register(Announcement)
 admin.site.register(Session, SessionAdmin)
 
 
 class EmployerAdmin(admin.ModelAdmin):
     list_display = ['id', 'username']
-
-
-admin.site.register(Employer, EmployerAdmin)
 
 
 admin.site.register(Employer, EmployerAdmin)
