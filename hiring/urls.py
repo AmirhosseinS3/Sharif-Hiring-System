@@ -36,4 +36,3 @@ urlpatterns = [
     path(r'success_comment', views.success_comment, name = "success_comment"),
 
 ]
-

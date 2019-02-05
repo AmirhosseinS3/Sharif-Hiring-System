@@ -121,6 +121,95 @@ def user(request):
     username = request.session['username']
     id = request.session['id']
     isEmployee = request.session['isEmployee']
+    return render(request, 'user.html', {'username': username, 'isEmployee': isEmployee, 'id': id})
+
+
+def confirm_employee(request, id, code):
+    if request.method == 'GET':
+        employee = Employee.objects.get(id=id)
+        actual_code = employee.confirmation_code
+        if code == actual_code:
+            employee.activated = True
+            employee.save()
+            return HttpResponseRedirect('/hiring/confirm_success/')
+        else:
+            return HttpResponseRedirect('/hiring/confirm_failed/')
+
+
+def confirm_employer(request, id, code):
+    if request.method == 'GET':
+        employer = Employer.objects.get(id=id)
+        actual_code = employer.confirmation_code
+        if code == actual_code:
+            employer.activated = True
+            employer.save()
+            return HttpResponseRedirect('/hiring/confirm_success')
+        else:
+            return HttpResponseRedirect('/hiring/confirm_failed')
+
+
+def success_signup(request):
+    return render(request, 'success_signup.html')
+
+
+@login_required
+def success_announcement(request):
+    return render(request, 'success_announcement.html')
+
+
+def confirm_success(request):
+    return render(request, 'confirm_success.html')
+
+
+def confirm_fail(request):
+    return render(request, 'confirm_fail.html')
+
+
+# class CreateAnnouncement(generic.CreateView):
+#     form_class = CreateAnnouncementForm
+#     success_url = 'hiring/success_announcement/'
+#     template_name = 'create-announcement.html'
+
+@login_required
+def create_announcement(request, id):
+    if request.method == 'GET':
+        form = CreateAnnouncementForm()
+        return render(request, 'create-announcement.html', {'form': form})
+    elif request.method == 'POST':
+        form = CreateAnnouncementForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            announce = Announcement(title=data['title'], category=data['category'],
+                                    contract_type=data['contract_type'],
+                                    salary_range_start=data['salary_range_start'],
+                                    salary_range_limit=data['salary_range_limit'],
+                                    city=data['city'], description=data['description'],
+                                    applicants=data['applicants'], experience=data['experience'],
+                                    employer=Employer.objects.get(id=id))
+            announce.save()
+            print('good')
+            return HttpResponseRedirect('/hiring/success_announcement')
+
+
+@login_required
+def logout_user(requet):
+    logout(requet)
+    return HttpResponseRedirect('/hiring')
+
+
+@login_required
+def announcements(request, id):
+    emp = Employer.objects.filter(id=id).first()
+    announcements = Announcement.objects.filter(employer=emp).filter(is_allowed=True)
+    name = emp.name
+    address = emp.address
+    desc = emp.description
+    id = id
+    return render(request, 'announcements.html', {'announcements': announcements, 'id': id, 'name': name,
+                                                  'address': address, 'description': desc})
+    username = request.session['username']
+    id = request.session['id']
+    isEmployee = request.session['isEmployee']
     announcements = Announcement.objects.all()
     return render(request, 'user.html', {'username': username, 'isEmployee': isEmployee, 'id': id, 'announcements': announcements})
 
