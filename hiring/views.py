@@ -351,6 +351,6 @@ def all_employees(request):
     print(all_employees[0].username)
     all_employees_score = Employee.objects.all().order_by('avg_of_scores')
     all_employees_comment = Employee.objects.all().order_by('num_of_comments')
-    return render(request, 'all-employees.html', {'all_employees': all_employees, 'all_employees_score': all_employees_score,
+    return render(request, 'all_employees.html', {'all_employees': all_employees, 'all_employees_score': all_employees_score,
                                                   'all_employees_comment': all_employees_comment, 'employer': employer})
 

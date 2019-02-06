@@ -79,19 +79,72 @@
 						<div class="col-lg-8" align = "right">
                                         <div class="single-post job-experience" dir = "rtl">
 								            <h4 class="single-title">کارجویان</h4>
-                                        <ul>
+                                        <button onclick="all_employee_score()">sort by score</button>
+                                        <button onclick="all_employee_comment()">sort by comment</button>
+                                        <div id="all_employees">
+                                            <ul>
                                             {% for employee in all_employees %}
-                                                <p>hi</p>
 									            <li>
 										            <img src="../../static/img/pages/list.jpg" alt="">
-										            <span>{{ employee.username }} :
+										            <span>{{ employee.name }}
                                                         <p>
-                                                            {{ employee.name }}
+                                                            {{ employee.description }}
                                                         </p>
                                                     </span>
 									            </li>
                                             {% endfor %}
                                         </ul>
+                                        </div>
+                                        <div id="all_employees_comment" style="display:none;">
+                                            <ul>
+                                            {% for employee in all_employees_comment %}
+									            <li>
+										            <img src="../../static/img/pages/list.jpg" alt="">
+										            <span>{{ employee.name }}
+                                                        <p>
+                                                            {{ employee.description }}
+                                                        </p>
+                                                    </span>
+									            </li>
+                                            {% endfor %}
+                                        </ul>
+                                        </div>
+                                        <div id="all_employees_score" style="display:none;">
+                                            <ul>
+                                            {% for employee in all_employees_score %}
+									            <li>
+										            <img src="../../static/img/pages/list.jpg" alt="">
+										            <span>{{ employee.name }}
+                                                        <p>
+                                                            {{ employee.description }}
+                                                        </p>
+                                                    </span>
+									            </li>
+                                            {% endfor %}
+                                        </ul>
+                                        </div>
+                                        <script>
+                                            var x1 = document.getElementById("all_employees");
+                                            console.log(x1);
+                                            var x2 = document.getElementById("all_employees_comment");
+                                            var x3 = document.getElementById("all_employees_score");
+                                            function all_employee() {
+                                                x1.style.display = 'block';
+                                                x2.style.display = 'none';
+                                                x3.style.display = 'none';
+                                            }
+                                            function all_employee_comment() {
+                                                x1.style.display = 'none';
+                                                x2.style.display = 'block';
+                                                x3.style.display = 'none';
+                                            }
+                                            function all_employee_score() {
+                                                x1.style.display = 'none';
+                                                console.log('hello');
+                                                x2.style.display = 'none';
+                                                x3.style.display = 'block';
+                                            }
+                                        </script>
                                         </div>
 						</div>
 					</div>
