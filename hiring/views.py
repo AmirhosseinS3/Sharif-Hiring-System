@@ -4,9 +4,9 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from hiring.models import Employer, Employee, Announcement, Comment
+from hiring.models import Employer, Employee, Announcement, Comment, EmployeeComment
 from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm, ResumeForm, \
-    CommentForm
+    CommentForm, EditEmployeeProfileForm, EmployeeCommentForm
 
 
 def hiring(request):
@@ -260,10 +260,10 @@ def announcements(request, id):
 def edit_profile_employee(request, id):
     employee = Employee.objects.filter(id=id).first()
     if request.method == 'GET':
-        form = editEmployeeProfileForm(instance=employee)
+        form = EditEmployeeProfileForm(instance=employee)
         return render(request, 'edit-profile.html', {'form': form, 'id': id})
     elif request.method == 'POST':
-        form = editEmployeeProfileForm(request.POST, instance=employee)
+        form = EditEmployeeProfileForm(request.POST, instance=employee)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/hiring/success_edit_profile')
@@ -315,3 +315,29 @@ def announcement_comment(request, id):
     else:
         form = CommentForm()
     return render(request, 'comment.html', {'form': form, 'id': employee.id})
+
+
+@login_required
+def employee_page(request, id):
+    employee = Employee.objects.filter(id=id).first()
+    comments = EmployeeComment.objects.filter(employee_id=id)
+    return render(request, 'employee-page.html', {'employee': employee, 'comments': comments})
+
+
+@login_required
+def employee_comment(request, id):
+    print(id)
+    employer_username = request.session['username']
+    employer = Employer.objects.filter(username=employer_username).first()
+    employee = Employee.objects.filter(id=id).first()
+    if request.method == "POST":
+        form = EmployeeCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.employer = employer
+            comment.employee = employee
+            comment.save()
+            return redirect('/hiring/success_comment')
+    else:
+        form = EmployeeCommentForm()
+    return render(request, 'employee-comment.html', {'form': form, 'id': employer.id})

@@ -33,6 +33,7 @@ urlpatterns = [
     path(r'success_upload_resume', views.success_upload_resume, name="success_upload_resume"),
     path(r'announcement/<int:id>', views.announcement, name = "announcement"),
     path(r'announcement_comment/<int:id>', views.announcement_comment, name = "announcement_comment"),
-    path(r'success_comment', views.success_comment, name = "success_comment"),
-
+    path(r'employee_comment/<int:id>', views.employee_comment, name="employee_comment"),
+    path(r'success_comment', views.success_comment, name ="success_comment"),
+    path(r'employee_page/<int:id>', views.employee_page, name='employee_page')
 ]

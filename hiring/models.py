@@ -73,3 +73,13 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class EmployeeComment(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='comments_employee')
+    employer = models.ForeignKey(Employer, on_delete=models.CASCADE, related_name='comments_employee')
+    text = models.TextField()
+
+    def __str__(self):
+        return self.text
+
