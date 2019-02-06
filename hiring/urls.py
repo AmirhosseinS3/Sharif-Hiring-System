@@ -36,5 +36,5 @@ urlpatterns = [
     path(r'employee_comment/<int:id>/', views.employee_comment, name="employee_comment"),
     path(r'success_comment/', views.success_comment, name="success_comment"),
     path(r'employee_page/<int:id>/', views.employee_page, name='employee_page'),
-    path(r'all-employees/<int:id>/', views.all_employees, name='all_employees')
+    path(r'all-employees/', views.all_employees, name='all_employees')
 ]

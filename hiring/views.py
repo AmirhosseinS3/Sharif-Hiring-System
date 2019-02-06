@@ -344,8 +344,9 @@ def employee_comment(request, id):
 
 
 @login_required
-def all_employees(request, id):
-    employer = Employer.objects.get(id=id)
+def all_employees(request):
+    employer_username = request.session['username']
+    employer = Employer.objects.get(username=employer_username)
     all_employees = Employee.objects.all()
     print(all_employees[0].username)
     all_employees_score = Employee.objects.all().order_by('avg_of_scores')
