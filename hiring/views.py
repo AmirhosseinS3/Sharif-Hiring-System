@@ -345,9 +345,9 @@ def employee_comment(request, id):
 
 @login_required
 def all_employees(request, id):
-    employer_username = request.session['username']
-    employer = Employer.objects.get(username=employer_username)
+    employer = Employer.objects.get(id=id)
     all_employees = Employee.objects.all()
+    print(all_employees[0].username)
     all_employees_score = Employee.objects.all().order_by('avg_of_scores')
     all_employees_comment = Employee.objects.all().order_by('num_of_comments')
     return render(request, 'all-employees.html', {'all_employees': all_employees, 'all_employees_score': all_employees_score,

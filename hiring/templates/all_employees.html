@@ -59,7 +59,7 @@
 					<div class="row fullscreen d-flex align-items-center justify-content-center">
 						<div class="banner-content col-lg-12">
 							<h1 class="text-white">
-								معرفی کارجو
+								لیست کارجویان
 							</h1>
 						</div>
 					</div>
@@ -72,52 +72,31 @@
 				<div class="container" align = "right" >
 					<div class="row justify-content-center d-flex">
 						<div class="col-lg-8 post-list">
-
-							<div class="single-post job-details">
-								<h4 class="single-title">معرفی کارجو</h4>
-								<p>
-                                    {{ employee.skills }}
-								</p>
-							</div>
-
-
-
-							<div class="dropdown-divider" align = "center">
-							</div>
-
-
-
-
 				<div class="single-post d-flex flex-row" align = "center" dir = "rtl">
 				<div class="container" align = "center">
 					<div class="row" align = "center">
 
 						<div class="col-lg-8" align = "right">
                                         <div class="single-post job-experience" dir = "rtl">
-								            <h4 class="single-title">نظرات</h4>
-                                            {% for comment in comments %}
-								            <ul>
+								            <h4 class="single-title">کارجویان</h4>
+                                        <ul>
+                                            {% for employee in all_employees %}
+                                                <p>hi</p>
 									            <li>
 										            <img src="../../static/img/pages/list.jpg" alt="">
-										            <span>{{ comment.employer.name }} :
+										            <span>{{ employee.username }} :
                                                         <p>
-                                                            {{ comment.text }}
+                                                            {{ employee.name }}
                                                         </p>
                                                     </span>
 									            </li>
-								            </ul>
                                             {% endfor %}
-                                            <a class="text-uppercase loadmore-btn mx-auto d-block"
-                                            href="{% url 'employee_comment' employee.id %}">به این کارجو نظر بدهید
-                                            </a>
+                                        </ul>
                                         </div>
-
 						</div>
 					</div>
 				</div>
 			</div>
-							<div class="dropdown-divider">
-							</div>
 
 
 						</div>
