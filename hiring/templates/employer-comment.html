@@ -59,7 +59,7 @@
 					<div class="row fullscreen d-flex align-items-center justify-content-center">
 						<div class="banner-content col-lg-12">
 							<h1 class="text-white">
-								معرفی کارجو
+								نظرات
 							</h1>
 						</div>
 					</div>
@@ -73,12 +73,6 @@
 					<div class="row justify-content-center d-flex">
 						<div class="col-lg-8 post-list">
 
-							<div class="single-post job-details">
-								<h4 class="single-title">معرفی کارجو</h4>
-								<p>
-                                    {{ employee.skills }}
-								</p>
-							</div>
 
 
 
@@ -89,33 +83,22 @@
 
 
 				<div class="single-post d-flex flex-row" align = "center" dir = "rtl">
-                    <div class="container" align = "center">
-                        <div class="row" align = "center">
+				<div class="container" align = "center">
+					<div class="row" align = "center">
 
-                            <div class="col-lg-8" align = "right">
-                                            <div class="single-post job-experience" dir = "rtl">
-                                                <h4 class="single-title">نظرات</h4>
-                                                {% for comment in comments %}
-                                                <ul>
-                                                    <li>
-                                                        <img src="../../static/img/pages/list.jpg" alt="">
-                                                        <span>{{ comment.employer.name }} :
-                                                            <p>
-                                                                {{ comment.text }}
-                                                            </p>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                                {% endfor %}
-                                                <a class="text-uppercase loadmore-btn mx-auto d-block"
-                                                href="{% url 'employee_comment' employee.id %}">به این کارجو نظر بدهید
-                                                </a>
-                                            </div>
-
-                            </div>
-                        </div>
-                    </div>
-			    </div>
+						<div class="col-lg-8" align = "right">
+                            <div class="col-lg-8 post-list">
+                                <h1>نظر جدید</h1>
+                                <form method="POST" class="post-form">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <button type="submit" class="text-uppercase loadmore-btn mx-auto d-block">ثبت نظر</button>
+                                </form>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
 							<div class="dropdown-divider">
 							</div>
 

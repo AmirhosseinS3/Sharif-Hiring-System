@@ -4,9 +4,9 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from hiring.models import Employer, Employee, Announcement, Comment, EmployeeComment
+from hiring.models import Employer, Employee, Announcement, Comment, EmployeeComment, EmployerComment
 from .forms import SignUpEmployerForm, SignUpEmployeeForm, CreateAnnouncementForm, ResumeForm, \
-    CommentForm, EditEmployeeProfileForm, EmployeeCommentForm
+    CommentForm, EditEmployeeProfileForm, EmployeeCommentForm, EmployerCommentForm
 
 
 def hiring(request):
@@ -323,6 +323,12 @@ def employee_page(request, id):
     comments = EmployeeComment.objects.filter(employee_id=id)
     return render(request, 'employee-page.html', {'employee': employee, 'comments': comments})
 
+@login_required
+def employer_page(request, id):
+    employer = Employer.objects.filter(id=id).first()
+    comments = EmployerComment.objects.filter(employer_id=id)
+    return render(request, 'employee-page.html', {'employer': employer, 'comments': comments})
+
 
 @login_required
 def employee_comment(request, id):
@@ -336,6 +342,25 @@ def employee_comment(request, id):
             comment = form.save(commit=False)
             comment.employer = employer
             comment.employee = employee
+            comment.save()
+            return redirect('/hiring/success_comment')
+    else:
+        form = EmployeeCommentForm()
+    return render(request, 'employee-comment.html', {'form': form, 'id': employer.id})
+
+
+@login_required
+def employer_comment(request, id):
+    print(id)
+    employee_username = request.session['username']
+    employee = Employee.objects.filter(username=employee_username).first()
+    employer = Employer.objects.filter(id=id).first()
+    if request.method == "POST":
+        form = EmployerCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.employee = employee
+            comment.employer = employer
             comment.save()
             return redirect('/hiring/success_comment')
     else:

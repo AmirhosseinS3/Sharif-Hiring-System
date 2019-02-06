@@ -166,3 +166,10 @@ class EmployeeCommentForm(forms.ModelForm):
     class Meta:
         model = EmployeeComment
         fields = ('text',)
+
+class EmployerCommentForm(forms.ModelForm):
+    text = forms.CharField(label='نظر', widget=forms.Textarea)
+
+    class Meta:
+        model = EmployerComment
+        fields = ('text',)

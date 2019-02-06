@@ -92,3 +92,13 @@ class EmployeeComment(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class EmployerComment(models.Model):
+    employee = models.ForeignKey(to=Employee, on_delete=models.CASCADE, related_name='comments_employee')
+    employer = models.ForeignKey(to=Employer, on_delete=models.CASCADE, related_name='comments_employer')
+    text = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.text
