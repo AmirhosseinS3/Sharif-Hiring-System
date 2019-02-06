@@ -28,9 +28,9 @@ class Employee(User):
     major = models.CharField(max_length=50, choices=MAJORS)
     isAlumni = models.BooleanField(default=False)
     resume = models.ForeignKey(Resume, on_delete='SET_NULL', related_name='employee', null=True, blank=True)
-    num_of_scores = models.IntegerField(default=0)
-    num_of_comments = models.IntegerField(default=0)
-    sum_of_scores =  models.FloatField(default=0.)
+    #num_of_scores = models.IntegerField(default=0)
+    #num_of_comments = models.IntegerField(default=0)
+    #sum_of_scores = models.FloatField(default=0.)
 
 
 class Employer(User):
@@ -39,9 +39,9 @@ class Employer(User):
     description = models.CharField(max_length=2000, null=False)
     confirmation_code = models.CharField(max_length=6)
     activated = models.BooleanField(default=False)
-    num_of_scores = models.IntegerField(default=0)
-    num_of_comments = models.IntegerField(default=0)
-    sum_of_scores =  models.FloatField(default=0.)
+    #num_of_scores = models.IntegerField(default=0)
+    #num_of_comments = models.IntegerField(default=0)
+    #sum_of_scores = models.FloatField(default=0.)
 
 
 class Announcement(models.Model):
@@ -72,8 +72,8 @@ class Announcement(models.Model):
 
 
 class Comment(models.Model):
-    announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE, related_name='comments')
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='comments')
+    announcement = models.ForeignKey(to=Announcement, on_delete=models.CASCADE, related_name='comments')
+    employee = models.ForeignKey(to=Employee, on_delete=models.CASCADE, related_name='comments')
     text = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
 
@@ -82,11 +82,10 @@ class Comment(models.Model):
 
 
 class EmployeeComment(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='comments_employee')
-    employer = models.ForeignKey(Employer, on_delete=models.CASCADE, related_name='comments_employee')
+    employee = models.ForeignKey(to=Employee, on_delete=models.CASCADE, related_name='comments_employee')
+    employer = models.ForeignKey(to=Employer, on_delete=models.CASCADE, related_name='comments_employer')
     text = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.text
-
