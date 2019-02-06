@@ -319,8 +319,7 @@ def announcement_comment(request, id):
 
 @login_required
 def employee_page(request, id):
-    employee = Employee.objects.get(id=id)
-    print(employee.num_of_scores)
+    employee = Employee.objects.filter(id=id).first()
     comments = EmployeeComment.objects.filter(employee_id=id)
     return render(request, 'employee-page.html', {'employee': employee, 'comments': comments})
 
@@ -329,9 +328,8 @@ def employee_page(request, id):
 def employee_comment(request, id):
     print(id)
     employer_username = request.session['username']
-    print(employer_username)
-    employer = Employer.objects.get(username=employer_username)
-    employee = Employee.objects.get(id=id)
+    employer = Employer.objects.filter(username=employer_username).first()
+    employee = Employee.objects.filter(id=id).first()
     if request.method == "POST":
         form = EmployeeCommentForm(request.POST)
         if form.is_valid():
@@ -347,5 +345,8 @@ def employee_comment(request, id):
 
 @login_required
 def all_employees(request, id):
-    # employer_username = request.session['username']
-    pass
+    employer_username = request.session['username']
+    employer = Employer.objects.get(username=employer_username)
+    all_employees = Employee.objects.all()
+    return render(request, 'all-employees.html', {'all_employees': all_employees, 'employer': employer})
+
