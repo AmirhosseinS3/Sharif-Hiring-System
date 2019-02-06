@@ -336,8 +336,16 @@ def employee_comment(request, id):
             comment = form.save(commit=False)
             comment.employer = employer
             comment.employee = employee
+            print(comment)
             comment.save()
             return redirect('/hiring/success_comment')
     else:
         form = EmployeeCommentForm()
     return render(request, 'employee-comment.html', {'form': form, 'id': employer.id})
+
+
+def all_employees(request, id):
+    employer_username = request.session['username']
+    employer = Employer.objects.filter(username=employer_username).first()
+    all_employees = Employee.objects.all()
+    return render(request, 'all-employees.html', {'all_employees': all_employees, 'employer': employer})
