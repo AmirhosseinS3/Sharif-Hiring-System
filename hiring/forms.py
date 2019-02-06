@@ -4,7 +4,7 @@ from django.core.mail import EmailMessage
 from django.forms import ModelForm
 from django.utils.crypto import get_random_string
 
-from .models import Employee, Employer, Announcement, Resume, Comment, EmployeeComment
+from .models import Employee, Employer, Announcement, Resume, Comment, EmployeeComment, EmployerComment
 
 
 class SignUpEmployerForm(UserCreationForm):
@@ -166,6 +166,7 @@ class EmployeeCommentForm(forms.ModelForm):
     class Meta:
         model = EmployeeComment
         fields = ('text',)
+
 
 class EmployerCommentForm(forms.ModelForm):
     text = forms.CharField(label='نظر', widget=forms.Textarea)
