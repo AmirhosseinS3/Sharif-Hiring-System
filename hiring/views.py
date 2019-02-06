@@ -336,6 +336,7 @@ def employee_comment(request, id):
             comment = form.save(commit=False)
             comment.employer = employer
             comment.employee = employee
+            print(comment)
             comment.save()
             return redirect('/hiring/success_comment')
     else:

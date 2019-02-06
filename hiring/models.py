@@ -66,8 +66,8 @@ class Announcement(models.Model):
 
 
 class Comment(models.Model):
-    announcement = models.ForeignKey(Announcement, on_delete=models.CASCADE, related_name='comments')
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='comments')
+    announcement = models.ForeignKey(to=Announcement, on_delete=models.CASCADE, related_name='comments')
+    employee = models.ForeignKey(to=Employee, on_delete=models.CASCADE, related_name='comments')
     text = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
 
@@ -76,8 +76,8 @@ class Comment(models.Model):
 
 
 class EmployeeComment(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='comments_employee')
-    employer = models.ForeignKey(Employer, on_delete=models.CASCADE, related_name='comments_employee')
+    employee = models.ForeignKey(to=Employee, on_delete=models.CASCADE, related_name='comments_employee')
+    employer = models.ForeignKey(to=Employer, on_delete=models.CASCADE, related_name='comments_employer')
     text = models.TextField()
 
     def __str__(self):
