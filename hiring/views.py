@@ -343,3 +343,9 @@ def employee_comment(request, id):
     else:
         form = EmployeeCommentForm()
     return render(request, 'employee-comment.html', {'form': form, 'id': employer.id})
+
+
+@login_required
+def all_employees(request, id):
+    employer_username = request.session['username']
+
