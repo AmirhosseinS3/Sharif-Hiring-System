@@ -30,7 +30,7 @@ class Employee(User):
     resume = models.ForeignKey(Resume, on_delete='SET_NULL', related_name='employee', null=True, blank=True)
     num_of_scores = models.IntegerField(default=0)
     num_of_comments = models.IntegerField(default=0)
-    sum_of_scores =  models.FloatField(default=0.)
+    sum_of_scores = models.FloatField(default=0.)
 
 
 class Employer(User):
@@ -41,7 +41,7 @@ class Employer(User):
     activated = models.BooleanField(default=False)
     num_of_scores = models.IntegerField(default=0)
     num_of_comments = models.IntegerField(default=0)
-    sum_of_scores =  models.FloatField(default=0.)
+    sum_of_scores = models.FloatField(default=0.)
 
 
 class Announcement(models.Model):
@@ -89,4 +89,3 @@ class EmployeeComment(models.Model):
 
     def __str__(self):
         return self.text
-
