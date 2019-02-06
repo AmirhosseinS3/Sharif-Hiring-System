@@ -329,6 +329,7 @@ def employee_page(request, id):
 def employee_comment(request, id):
     print(id)
     employer_username = request.session['username']
+    print(employer_username)
     employer = Employer.objects.get(username=employer_username)
     employee = Employee.objects.get(id=id)
     if request.method == "POST":
@@ -337,7 +338,6 @@ def employee_comment(request, id):
             comment = form.save(commit=False)
             comment.employer = employer
             comment.employee = employee
-            print(comment)
             comment.save()
             return redirect('/hiring/success_comment')
     else:
@@ -347,5 +347,5 @@ def employee_comment(request, id):
 
 @login_required
 def all_employees(request, id):
-    employer_username = request.session['username']
-
+    # employer_username = request.session['username']
+    pass
