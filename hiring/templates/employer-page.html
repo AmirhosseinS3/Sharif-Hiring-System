@@ -163,47 +163,35 @@
 								
 							
 				<div class="single-post d-flex flex-row" align = "center" dir = "rtl">
-				<div class="container" align = "center">
-					<div class="row" align = "center">
-						
-						<div class="col-lg-8" align = "center">
-							<form class="form-area " id="myForm" method="post" class="contact-form text-right" align = "center">
-								<div class="row" align = "center">	
-									<div class="col-lg-12 form-group" align = "center">
-										<input name="name" placeholder="نام" onfocus="this.placeholder = ''" onblur="this.placeholder = 'نام'" class="common-input mb-20 form-control" required="" type="text">
-									
-										<input name="email" placeholder="پست الکترونیک" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'پست الکترونیک'" class="common-input mb-20 form-control" required="" type="email">
+                    <div class="container" align = "center">
+                        <div class="row" align = "center">
 
-										<textarea class="common-textarea mt-10 form-control" name="message" placeholder="پیام" onfocus="this.placeholder = ''" onblur="this.placeholder = 'پیام'" required=""></textarea>
-										<button class="primary-btn mt-20 text-white" style="float: right;">ارسال نظر</button>
-										<div class="mt-20 alert-msg" style="text-align: left;"></div>
-									</div>
-								</div>
-							</form>	
-						</div>
-					</div>
-				</div>	
-			</div>
+                            <div class="col-lg-8" align = "right">
+                                            <div class="single-post job-experience" dir = "rtl">
+                                                <h4 class="single-title">نظرات</h4>
+                                                {% for comment in comments %}
+                                                <ul>
+                                                    <li>
+                                                        <img src="../../static/img/pages/list.jpg" alt="">
+                                                        <span>{{ comment.employee.name }} :
+                                                            <p>
+                                                                {{ comment.text }}
+                                                            </p>
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                                {% endfor %}
+                                                <a class="text-uppercase loadmore-btn mx-auto d-block"
+                                                href="{% url 'employer_comment' employer.id %}">به این کارفرما نظر بدهید
+                                                </a>
+                                            </div>
+
+                            </div>
+                        </div>
+                    </div>
+			    </div>
 							<div class="dropdown-divider">
 							</div>
-							<h3>تصاویر</h3>
-						<div class="row gallery-item">
-							<div class="col-md-4">
-								<a href="../../static/img/google1.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../static/img/google1.jpg);"></div></a>
-							</div>
-							<div class="col-md-4">
-								<a href="../../static/img/google2.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../static/img/google2.jpg);"></div></a>
-							</div>
-							<div class="col-md-4">
-								<a href="../../static/img/google3.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../static/img/google3.jpg);"></div></a>
-							</div>
-							<div class="col-md-6">
-								<a href="../../static/img/google4.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../static/img/google4.jpg);"></div></a>
-							</div>
-							<div class="col-md-6">
-								<a href="../../static/img/google5.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../static/img/google5.jpg);"></div></a>
-							</div>
-						</div>
 						
 						</div>
 						

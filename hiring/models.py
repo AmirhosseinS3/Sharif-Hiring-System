@@ -30,7 +30,7 @@ class Employee(User):
     resume = models.ForeignKey(Resume, on_delete='SET_NULL', related_name='employee', null=True, blank=True)
     num_of_scores = models.IntegerField(default=0)
     num_of_comments = models.IntegerField(default=0)
-    sum_of_scores = models.FloatField(default=0.0)
+    avg_of_scores = models.FloatField(default=0.0)
 
 
 class Employer(User):
@@ -41,7 +41,7 @@ class Employer(User):
     activated = models.BooleanField(default=False)
     num_of_scores = models.IntegerField(default=0)
     num_of_comments = models.IntegerField(default=0)
-    sum_of_scores = models.FloatField(default=0.)
+    avg_of_scores = models.FloatField(default=0.0)
 
 
 class Announcement(models.Model):
@@ -71,7 +71,7 @@ class Announcement(models.Model):
     is_allowed = models.BooleanField(default=False)
     num_of_scores = models.IntegerField(default=0)
     num_of_comments = models.IntegerField(default=0)
-    sum_of_scores = models.FloatField(default=0.0)
+    avg_of_scores = models.FloatField(default=0.0)
 
 
 class Comment(models.Model):
@@ -85,6 +85,16 @@ class Comment(models.Model):
 
 
 class EmployeeComment(models.Model):
+    employee = models.ForeignKey(to=Employee, on_delete=models.CASCADE, related_name='comments_employee')
+    employer = models.ForeignKey(to=Employer, on_delete=models.CASCADE, related_name='comments_employer')
+    text = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.text
+
+
+class EmployerComment(models.Model):
     employee = models.ForeignKey(to=Employee, on_delete=models.CASCADE, related_name='comments_employee')
     employer = models.ForeignKey(to=Employer, on_delete=models.CASCADE, related_name='comments_employer')
     text = models.TextField()
