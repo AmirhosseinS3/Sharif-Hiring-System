@@ -348,5 +348,7 @@ def all_employees(request, id):
     employer_username = request.session['username']
     employer = Employer.objects.get(username=employer_username)
     all_employees = Employee.objects.all()
+    all_employees_score = Employee.objects.all().order_by('num')
+    all_employees_comment = Employee.objects.all()
     return render(request, 'all-employees.html', {'all_employees': all_employees, 'employer': employer})
 
